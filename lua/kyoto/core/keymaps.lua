@@ -56,3 +56,6 @@ keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current c
 
 -- restart lsp server (not on youtube nvim video)
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
+
+-- setup git terminal
+keymap.set("n", "<leader>zz", ":FloatermNew --height=1.0 --width=1.0 lazygit<CR>") -- open git terminal
