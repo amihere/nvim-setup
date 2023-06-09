@@ -59,3 +59,6 @@ keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if ne
 
 -- setup git terminal
 keymap.set("n", "<leader>zz", ":FloatermNew --height=1.0 --width=1.0 lazygit<CR>") -- open git terminal
+
+-- run elixir commands
+keymap.set("n", "<leader>zx", ":FloatermNew iex -S mix<CR>")
