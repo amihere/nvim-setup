@@ -18,6 +18,8 @@ treesitter.setup({
 	ensure_installed = {
 		"json",
 		"javascript",
+		"eex",
+		"heex",
 		"elixir",
 		"erlang",
 		"yaml",

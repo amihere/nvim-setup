@@ -29,7 +29,9 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
 	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
-	keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
+	-- keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
+	-- Toggle outline
+	keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -61,5 +63,19 @@ lspconfig["lua_ls"].setup({
 				},
 			},
 		},
+	},
+})
+
+-- Configure ElixirLS as the LSP server for Elixir.
+lspconfig["elixirls"].setup({
+	cmd = { "/usr/local/Cellar/elixir-ls/0.14.6/libexec/language_server.sh" },
+	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
+	elixirLS = {
+		dialyzerEnabled = false,
+		fetchDeps = false,
 	},
 })
