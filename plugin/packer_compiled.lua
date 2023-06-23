@@ -144,11 +144,6 @@ _G.packer_plugins = {
     path = "/Users/AyebaKwaw/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
-  nightfly = {
-    loaded = true,
-    path = "/Users/AyebaKwaw/.local/share/nvim/site/pack/packer/start/nightfly",
-    url = "https://github.com/bluz71/vim-nightfly-colors"
-  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/Users/AyebaKwaw/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
@@ -208,6 +203,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/AyebaKwaw/.local/share/nvim/site/pack/packer/start/vim-ReplaceWithRegister",
     url = "https://github.com/inkarkat/vim-ReplaceWithRegister"
+  },
+  ["vim-cyberpunk"] = {
+    loaded = true,
+    path = "/Users/AyebaKwaw/.local/share/nvim/site/pack/packer/start/vim-cyberpunk",
+    url = "https://github.com/thedenisnikulin/vim-cyberpunk"
   },
   ["vim-floaterm"] = {
     loaded = true,
