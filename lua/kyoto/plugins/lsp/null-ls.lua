@@ -20,9 +20,9 @@ null_ls.setup({
 		formatting.stylua, -- lua formatter
 		formatting.erlfmt,
 		formatting.mix,
-    formatting.clang_format,
-    diagnostics.cppcheck,
-		diagnostics.credo,
+		formatting.clang_format,
+		diagnostics.cppcheck,
+		-- diagnostics.credo,
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)
