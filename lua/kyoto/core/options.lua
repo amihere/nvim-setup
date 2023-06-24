@@ -17,7 +17,7 @@ opt.wrap = false
 opt.ignorecase = true
 opt.smartcase = true
 
--- cursor line 
+-- cursor line
 opt.cursorline = true
 
 -- appearance
@@ -35,3 +35,7 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 
+-- the prime aegean
+opt.incsearch = true
+opt.hlsearch = true
+opt.scrolloff = 8

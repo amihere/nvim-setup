@@ -62,3 +62,38 @@ keymap.set("n", "<leader>zz", ":FloatermNew --height=1.0 --width=1.0 lazygit<CR>
 
 -- run elixir commands
 keymap.set("n", "<leader>zx", ":FloatermNew iex -S mix<CR>")
+
+-- the prime aegean
+
+-- moving lines up and down
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- move line below up, and keep cursor stationary
+keymap.set("n", "J", "mzJ`z")
+
+-- keep cursor in middle while going up/down
+keymap.set("n", "<C-d>", "<C-d>zz")
+keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- keep cursor in middle when searching
+keymap.set("n", "n", "nzzzv")
+keymap.set("n", "N", "Nzzzv")
+
+-- keeps original copied text when pasting over another selected text
+keymap.set("x", "<leader>p", [["_dP]])
+
+-- will copy text into both copy buffer and system clipboard
+keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+keymap.set("n", "<leader>Y", [["+Y]])
+keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+
+keymap.set("n", "Q", "<nop>")
+
+-- navigate to previous window, using tmux
+keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+keymap.set("n", "<leader>fa", vim.lsp.buf.format)
+keymap.set("n", "<leader><leader>", function()
+	vim.cmd("so")
+end)
