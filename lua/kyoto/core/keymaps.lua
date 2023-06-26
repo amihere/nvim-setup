@@ -58,7 +58,10 @@ keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current c
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
 -- setup git terminal
-keymap.set("n", "<leader>zz", ":FloatermNew --height=1.0 --width=1.0 lazygit<CR>") -- open git terminal
+keymap.set("n", "<leader>zz", ":FloatermNew --height=1.0 --width=1.0 lazygit<CR>")
+keymap.set("n", "<leader>bb", ":FloatermNew --wintype=split ") -- open prompt to launch command
+keymap.set("n", "<leader>bt", ":FloatermNew --wintype=split <CR>") -- opens the terminal
+keymap.set("t", "<ESC>", "<cmd>FloatermToggle<cr>")
 
 -- run elixir commands
 keymap.set("n", "<leader>zx", ":FloatermNew iex -S mix<CR>")
