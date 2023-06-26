@@ -9,6 +9,7 @@ treesitter.setup({
 	-- enable syntax highlighting
 	highlight = {
 		enable = true,
+		disable = {},
 	},
 	-- enable indentation
 	indent = { enable = true },
@@ -16,14 +17,11 @@ treesitter.setup({
 	autotag = { enable = true },
 	-- ensure these language parsers are installed
 	ensure_installed = {
-		"json",
-		"javascript",
 		"eex",
 		"heex",
 		"elixir",
 		"erlang",
-		"yaml",
-		"css",
+		"json",
 		"bash",
 		"lua",
 		"vim",

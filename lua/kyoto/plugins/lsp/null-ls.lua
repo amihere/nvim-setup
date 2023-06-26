@@ -18,11 +18,8 @@ null_ls.setup({
 		--  to disable file types use
 		--  "formatting.prettier.with({disabled_filetypes = {}})" (see null-ls docs)
 		formatting.stylua, -- lua formatter
-		formatting.erlfmt,
 		formatting.mix,
 		formatting.clang_format,
-		diagnostics.cppcheck,
-		-- diagnostics.credo,
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)
