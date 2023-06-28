@@ -43,7 +43,7 @@ set -g @continuum-restore 'on' # enable tmux-continuum functionality
 run '~/.tmux/plugins/tpm/tpm'
 ```
 
-### tmux.sessionizer
+### ~/.local/bin/tmux.sessionizer
 
 ``` 
 #!/usr/bin/env bash
