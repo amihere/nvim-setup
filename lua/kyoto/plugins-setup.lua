@@ -110,6 +110,9 @@ return packer.startup(function(use)
 
 	use("voldikss/vim-floaterm")
 
+	-- harpoon
+	use({ "ThePrimeagen/harpoon" })
+
 	use({
 		"folke/which-key.nvim",
 		config = function()
