@@ -11,6 +11,7 @@ Install by double clicking and install, then configure iTerm to use in **Prefere
 #### issues with telescope grep
 ```brew install fd``` <br>
 ```brew install ripgrep```
+```brew install fzf```
 
 #### packer not installing
 At the beginning packer (plugin manager) was acting funny. Use this command in the shell to fix it: <br>
