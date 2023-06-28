@@ -67,7 +67,7 @@ lspconfig["lua_ls"].setup({
 })
 
 -- Configure ElixirLS as the LSP server for Elixir.
-lspconfig["elixirls"].setup({
+lspconfig.elixirls.setup({
 	cmd = { "/usr/local/Cellar/elixir-ls/0.14.6/libexec/language_server.sh" },
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,

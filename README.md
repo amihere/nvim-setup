@@ -11,6 +11,15 @@ Install by double clicking and install, then configure iTerm to use in **Prefere
 #### issues with telescope grep
 ```brew install fd``` <br>
 ```brew install ripgrep```
+```brew install fzf```
+
+#### tmux 
+Run ```brew install tmux```
+Create files ```~/.tmux.conf``` and ```~/.local/bin/tmux-sessionizer```. See other_files.md
+Make tmux-sessionizer executable by using ```chmod u+x```
+
+#### create a .zshrc.local in your ~ folder
+```bindkey -s "^f" "~/.local/bin/tmux-sessionizer^M"```
 
 #### packer not installing
 At the beginning packer (plugin manager) was acting funny. Use this command in the shell to fix it: <br>

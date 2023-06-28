@@ -33,7 +33,10 @@ return packer.startup(function(use)
 
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
-	use({ "bluz71/vim-nightfly-colors", as = "nightfly" }) -- preferred colorscheme
+	-- use({ "sts10/vim-pink-moon", as = "pink-moon" }) -- preferred colorscheme
+
+	use({ "thedenisnikulin/vim-cyberpunk", as = "vim-cyberpunk" }) -- preferred colorscheme
+	-- use({ "seandewar/paragon.vim", as = "paragon" }) -- preferred colorscheme
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
@@ -106,6 +109,9 @@ return packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
 	use("voldikss/vim-floaterm")
+
+	-- harpoon
+	use({ "ThePrimeagen/harpoon" })
 
 	use({
 		"folke/which-key.nvim",
