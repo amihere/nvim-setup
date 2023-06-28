@@ -51,7 +51,7 @@ run '~/.tmux/plugins/tpm/tpm'
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/Documents/Affinity ~/Documents/Play ~/Documents/Play/Elixir ~/.config ~/.config/nvim -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find <ANY DIRECTORIES YOU MAY NEED> -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
