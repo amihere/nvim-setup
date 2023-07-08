@@ -86,6 +86,8 @@ keymap.set("n", "Q", "<nop>")
 -- harpoon
 keymap.set("n", "<leader>hn", "<cmd>lua require('harpoon.mark').add_file()<cr>")
 keymap.set("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>") -- harpoon quick command
+keymap.set("n", "<leader>.", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
+keymap.set("n", "<leader>,", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")
 
 -- navigate to previous window, using tmux
 
