@@ -219,11 +219,6 @@ _G.packer_plugins = {
     path = "/Users/AyebaKwaw/.local/share/nvim/site/pack/packer/start/vim-floaterm",
     url = "https://github.com/voldikss/vim-floaterm"
   },
-  ["vim-maximizer"] = {
-    loaded = true,
-    path = "/Users/AyebaKwaw/.local/share/nvim/site/pack/packer/start/vim-maximizer",
-    url = "https://github.com/szw/vim-maximizer"
-  },
   ["vim-surround"] = {
     loaded = true,
     path = "/Users/AyebaKwaw/.local/share/nvim/site/pack/packer/start/vim-surround",
