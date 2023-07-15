@@ -19,6 +19,8 @@ null_ls.setup({
 		--  "formatting.prettier.with({disabled_filetypes = {}})" (see null-ls docs)
 		formatting.stylua, -- lua formatter
 		formatting.mix,
+		formatting.ruff,
+		formatting.astyle,
 		formatting.clang_format,
 	},
 	-- configure format on save

@@ -66,6 +66,22 @@ lspconfig["lua_ls"].setup({
 	},
 })
 
+lspconfig.pylsp.setup({
+	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
+lspconfig.java_language_server.setup({
+	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
 -- Configure ElixirLS as the LSP server for Elixir.
 lspconfig.elixirls.setup({
 	cmd = { "/usr/local/opt/elixir-ls/libexec/language_server.sh" },
