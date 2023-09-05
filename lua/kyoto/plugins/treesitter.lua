@@ -22,6 +22,8 @@ treesitter.setup({
 		"elixir",
 		"erlang",
 		"json",
+    "typescript",
+    "svelte",
 		"bash",
 		"lua",
 		"vim",

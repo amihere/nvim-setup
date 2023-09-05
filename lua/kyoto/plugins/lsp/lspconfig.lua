@@ -82,6 +82,30 @@ lspconfig.java_language_server.setup({
 	},
 })
 
+lspconfig.tsserver.setup({
+	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+lspconfig.svelte.setup({
+	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
+local capable = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+lspconfig.html.setup({
+	capabilities = capable,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
 -- Configure ElixirLS as the LSP server for Elixir.
 lspconfig.elixirls.setup({
 	cmd = { "/usr/local/opt/elixir-ls/libexec/language_server.sh" },

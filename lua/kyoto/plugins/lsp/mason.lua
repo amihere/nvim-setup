@@ -23,9 +23,12 @@ mason_lspconfig.setup({
 	-- list of servers for mason to install
 	ensure_installed = {
 		"elixirls",
-    "pylsp",
-    "java_language_server",
+		"pylsp",
+		"java_language_server",
 		"lua_ls",
+		"svelte",
+		"html",
+		"tsserver",
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
