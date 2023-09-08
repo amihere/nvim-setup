@@ -27,7 +27,8 @@ keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
 ----------------------
 
 -- nvim-tree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
+keymap.set("n", "<leader>w", ":NvimTreeClose<CR>") -- close always
+keymap.set("n", "<leader>e", ":NvimTreeFocus<CR>") -- open, or focus if opened
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
@@ -81,6 +82,8 @@ keymap.set("x", "<leader>p", [["_dP]])
 keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 keymap.set("n", "<leader>Y", [["+Y]])
 keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+
+-- keymap.set({ "n", "v" }, "<leader>p", [["*p]])
 
 keymap.set("n", "Q", "<nop>")
 
