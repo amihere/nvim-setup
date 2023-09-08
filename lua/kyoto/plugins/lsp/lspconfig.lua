@@ -82,13 +82,6 @@ lspconfig.java_language_server.setup({
 	},
 })
 
-lspconfig.tsserver.setup({
-	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
-	capabilities = capabilities,
-	flags = {
-		debounce_text_changes = 150,
-	},
-})
 lspconfig.svelte.setup({
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
@@ -98,7 +91,7 @@ lspconfig.svelte.setup({
 })
 
 local capable = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+capable.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.html.setup({
 	capabilities = capable,
 	flags = {

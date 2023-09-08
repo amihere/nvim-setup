@@ -37,5 +37,5 @@ opt.splitbelow = true
 
 -- the prime aegean
 opt.incsearch = true
-opt.hlsearch = true
+opt.hlsearch = false
 opt.scrolloff = 8
