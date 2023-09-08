@@ -23,9 +23,11 @@ mason_lspconfig.setup({
 	-- list of servers for mason to install
 	ensure_installed = {
 		"elixirls",
-    "pylsp",
-    "java_language_server",
+		"pylsp",
+		"java_language_server",
 		"lua_ls",
+		"svelte",
+		"html",
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
@@ -35,7 +37,11 @@ mason_null_ls.setup({
 	-- list of formatters & linters for mason to install
 	ensure_installed = {
 		"stylua", -- lua formatter
-		-- "erlfmt",
+		"htmlbeautifier",
+		"ruff",
+		"clang_format",
+		"prettier",
+		"eslint_d",
 	},
 	-- auto-install configured formatters & linters (with null-ls)
 	automatic_installation = true,
