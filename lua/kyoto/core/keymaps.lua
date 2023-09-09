@@ -26,10 +26,6 @@ keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
 -- Plugin Keybinds
 ----------------------
 
--- nvim-tree
-keymap.set("n", "<leader>w", ":NvimTreeClose<CR>") -- close always
-keymap.set("n", "<leader>e", ":NvimTreeFocus<CR>") -- open, or focus if opened
-
 -- telescope
 keymap.set("n", "<leader>pf", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
 keymap.set("n", "<leader>ps", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
@@ -74,7 +70,7 @@ keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
 
 -- keeps original copied text when pasting over another selected text
-keymap.set("x", "<leader>p", [["_dP]])
+-- keymap.set("x", "<leader>p", [["_dP]])
 
 -- will copy text into both copy buffer and system clipboard
 keymap.set({ "n", "v" }, "<leader>y", [["+y]])
@@ -99,5 +95,5 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
+	vim.cmd("so")
 end)
