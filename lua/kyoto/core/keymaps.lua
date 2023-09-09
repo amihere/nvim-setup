@@ -7,6 +7,14 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps
 ---------------------
 
+
+
+
+
+
+
+
+
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>")
 
@@ -31,34 +39,32 @@ keymap.set("n", "<leader>w", ":NvimTreeClose<CR>") -- close always
 keymap.set("n", "<leader>e", ":NvimTreeFocus<CR>") -- open, or focus if opened
 
 -- telescope
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
-keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
-keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
-keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
-keymap.set("n", "<leader>fj", "<cmd>Telescope help_tags<cr>") -- list available help tags
+keymap.set("n", "<leader>pf", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
+keymap.set("n", "<leader>ps", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
+keymap.set("n", "<leader>pc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
+keymap.set("n", "<leader>pb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
+keymap.set("n", "<leader>pj", "<cmd>Telescope help_tags<cr>") -- list available help tags
 
 keymap.set("n", "<leader>fh", "<cmd>Telescope harpoon marks<cr>") -- open harpoon list
-
--- telescope git commands (not on youtube nvim video)
-keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
-keymap.set("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
-keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout) ["gb" for git branch]
-keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
 
 -- restart lsp server (not on youtube nvim video)
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
--- setup git terminal
+-- open git terminal
 keymap.set("n", "<leader>zz", "<cmd>FloatermNew --height=1.0 --width=1.0 lazygit<CR>")
-keymap.set("n", "<leader>zc", ":FloatermNew --wintype=split ") -- open prompt to launch command
-keymap.set("n", "<leader>zv", ":FloatermNew --wintype=split <CR>") -- opens the terminal
-keymap.set("t", "<ESC>", "<cmd>FloatermToggle<cr>")
 
 -- run elixir commands
 keymap.set("n", "<leader>zx", ":FloatermNew iex -S mix<CR>")
 keymap.set("n", "<leader>zb", ":FloatermNew mix run --no-halt")
 
--- the prime aegean
+-- harpoon
+keymap.set("n", "<leader>a", "<cmd>lua require('harpoon.mark').add_file()<cr>")
+keymap.set("n", "<C-e>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>") -- harpoon quick command
+keymap.set("n", "<leader>.", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
+keymap.set("n", "<leader>,", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")
+
+-- new wave
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- moving lines up and down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -85,17 +91,21 @@ keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- keymap.set({ "n", "v" }, "<leader>p", [["*p]])
 
-keymap.set("n", "Q", "<nop>")
+-- This is going to get me cancelled
+vim.keymap.set("i", "<C-c>", "<Esc>")
 
--- harpoon
-keymap.set("n", "<leader>hn", "<cmd>lua require('harpoon.mark').add_file()<cr>")
-keymap.set("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>") -- harpoon quick command
-keymap.set("n", "<leader>.", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
-keymap.set("n", "<leader>,", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")
+vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "<C-f>", "<cmd>silent !~/.local/bin/tmux-sessionizer<CR>")
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
--- navigate to previous window, using tmux
+vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
-keymap.set("n", "<leader>fa", vim.lsp.buf.format)
-keymap.set("n", "<leader><leader>", function()
-	vim.cmd("so")
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
+
+vim.keymap.set("n", "<leader><leader>", function()
+    vim.cmd("so")
 end)
