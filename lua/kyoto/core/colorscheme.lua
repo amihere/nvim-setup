@@ -1,13 +1,14 @@
--- set colorscheme to nightfly with protected call
--- in case it isn't installed
--- local status, _ = pcall(vim.cmd, "colorscheme paragon")
-pcall(vim.cmd, "set termguicolors")
-local status, _ = pcall(vim.cmd, "colorscheme cyberpunk")
-pcall(vim.cmd, "let g:airline_theme='cyberpunk'")
-pcall(vim.cmd, "set cursorline")
-pcall(vim.cmd, 'let g:cyberpunk_cursorline="black"')
+require('rose-pine').setup({
+    disable_background = true
+})
 
-if not status then
-	print("Colorscheme not found!") -- print error if colorscheme not installed
-	return
+function ColorMyPencils(color) 
+	color = color or "rose-pine"
+	vim.cmd.colorscheme(color)
+
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
 end
+
+ColorMyPencils()
