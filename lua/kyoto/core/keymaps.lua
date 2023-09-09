@@ -36,8 +36,8 @@ keymap.set("n", "<leader>ps", "<cmd>Telescope live_grep<cr>") -- find string in 
 keymap.set("n", "<leader>pc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>pb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>pj", "<cmd>Telescope help_tags<cr>") -- list available help tags
-
-keymap.set("n", "<leader>fh", "<cmd>Telescope harpoon marks<cr>") -- open harpoon list
+keymap.set("n", "<leader>pg", "<cmd>Telescope git_files<cr>") -- git file search
+keymap.set("n", "<leader>ph", "<cmd>Telescope harpoon marks<cr>") -- open harpoon list
 
 -- restart lsp server (not on youtube nvim video)
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
