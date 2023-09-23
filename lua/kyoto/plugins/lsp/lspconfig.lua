@@ -29,7 +29,9 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
 	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
-	keymap.set("i", "<C-k>", function() vim.lsp.buf.signature_help() end, opts)
+	keymap.set("i", "<C-k>", function()
+		vim.lsp.buf.signature_help()
+	end, opts)
 	-- keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
 	-- Toggle outline
 	keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
@@ -76,6 +78,14 @@ lspconfig.pylsp.setup({
 })
 
 lspconfig.java_language_server.setup({
+	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
+lspconfig.biome.setup({
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
 	flags = {
