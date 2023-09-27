@@ -16,6 +16,11 @@ keymap.set("n", "<leader>nh", ":nohl<CR>")
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
 
+-- window management
+keymap.set("n", "<leader>|", "<C-w>v") -- split window vertically
+keymap.set("n", "<leader>-", "<C-w>s") -- split window horizontally
+keymap.set("n", "<leader>q", "<C-w>q") -- close current split window
+
 ----------------------
 -- Plugin Keybinds
 ----------------------
@@ -28,7 +33,6 @@ keymap.set("n", "<leader>cb", "<cmd>Telescope buffers<cr>") -- list open buffers
 keymap.set("n", "<leader>cj", "<cmd>Telescope help_tags<cr>") -- list available help tags
 keymap.set("n", "<leader>cg", "<cmd>Telescope git_files<cr>") -- git file search
 
--- restart lsp server (not on youtube nvim video)
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
 -- open git terminal
