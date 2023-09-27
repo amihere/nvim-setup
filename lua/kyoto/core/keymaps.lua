@@ -17,29 +17,22 @@ keymap.set("n", "<leader>nh", ":nohl<CR>")
 keymap.set("n", "x", '"_x')
 
 -- window management
-keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
-keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
+keymap.set("n", "<leader>|", "<C-w>v") -- split window vertically
+keymap.set("n", "<leader>-", "<C-w>s") -- split window horizontally
+keymap.set("n", "<leader>q", "<C-w>q") -- close current split window
 
 ----------------------
 -- Plugin Keybinds
 ----------------------
 
--- nvim-tree
-keymap.set("n", "<leader>w", ":NvimTreeClose<CR>") -- close always
-keymap.set("n", "<leader>e", ":NvimTreeFocus<CR>") -- open, or focus if opened
-
 -- telescope
-keymap.set("n", "<leader>pf", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
-keymap.set("n", "<leader>ps", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
-keymap.set("n", "<leader>pc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
-keymap.set("n", "<leader>pb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
-keymap.set("n", "<leader>pj", "<cmd>Telescope help_tags<cr>") -- list available help tags
-keymap.set("n", "<leader>pg", "<cmd>Telescope git_files<cr>") -- git file search
-keymap.set("n", "<leader>ph", "<cmd>Telescope harpoon marks<cr>") -- open harpoon list
+keymap.set("n", "<leader>cf", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
+keymap.set("n", "<leader>cs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
+keymap.set("n", "<leader>cc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
+keymap.set("n", "<leader>cb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
+keymap.set("n", "<leader>cj", "<cmd>Telescope help_tags<cr>") -- list available help tags
+keymap.set("n", "<leader>cg", "<cmd>Telescope git_files<cr>") -- git file search
 
--- restart lsp server (not on youtube nvim video)
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
 -- open git terminal
@@ -56,7 +49,7 @@ keymap.set("n", "<leader>.", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
 keymap.set("n", "<leader>,", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")
 
 -- new wave
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>cv", vim.cmd.Ex)
 
 -- moving lines up and down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -81,7 +74,7 @@ keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 keymap.set("n", "<leader>Y", [["+Y]])
 keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
--- keymap.set({ "n", "v" }, "<leader>p", [["*p]])
+keymap.set({ "n", "v" }, "<leader>p", [["*p]])
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -99,5 +92,5 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
+	vim.cmd("so")
 end)

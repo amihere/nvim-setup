@@ -1,6 +1,7 @@
 require("kyoto.plugins-setup")
 require("kyoto.core.options")
 require("kyoto.core.keymaps")
+require("kyoto.core.misc-setup")
 require("kyoto.core.colorscheme")
 require("kyoto.plugins.comment")
 require("kyoto.plugins.nvim-tree")

@@ -34,12 +34,12 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
 	use({
-	    'rose-pine/neovim',
-	    as = 'rose-pine',
-	    config = function()
-	      vim.cmd('colorscheme rose-pine')
-	    end
-	  })
+		"rose-pine/neovim",
+		as = "rose-pine",
+		config = function()
+			vim.cmd("colorscheme rose-pine")
+		end,
+	})
 	-- use({ "thedenisnikulin/vim-cyberpunk", as = "vim-cyberpunk" }) -- preferred colorscheme
 	-- use({ "seandewar/paragon.vim", as = "paragon" }) -- preferred colorscheme
 
@@ -47,16 +47,9 @@ return packer.startup(function(use)
 
 	-- essential plugins
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
-	use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
 
 	-- commenting with gc
 	use("numToStr/Comment.nvim")
-
-	-- file explorer
-	use("nvim-tree/nvim-tree.lua")
-
-	-- vs-code like icons
-	use("nvim-tree/nvim-web-devicons")
 
 	-- statusline
 	use("nvim-lualine/lualine.nvim")
@@ -86,11 +79,9 @@ return packer.startup(function(use)
 		"glepnir/lspsaga.nvim",
 		branch = "main",
 		requires = {
-			{ "nvim-tree/nvim-web-devicons" },
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
 	}) -- enhanced lsp uis
-	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
 	-- formatting & linting
 	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
@@ -120,7 +111,7 @@ return packer.startup(function(use)
 		"folke/which-key.nvim",
 		config = function()
 			vim.o.timeout = true
-			vim.o.timeoutlen = 300
+			vim.o.timeoutlen = 200
 			require("which-key").setup({
 				-- your configuration comes here
 				-- or leave it empty to use the default settings
