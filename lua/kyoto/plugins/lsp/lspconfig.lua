@@ -96,8 +96,14 @@ lspconfig.biome.setup({
 lspconfig.svelte.setup({
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
-	flags = {
-		debounce_text_changes = 150,
+	settings = {
+		svelte = {
+			plugin = {
+				typescript = {
+					enabled = false,
+				},
+			},
+		},
 	},
 })
 
