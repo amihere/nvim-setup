@@ -93,18 +93,33 @@ lspconfig.biome.setup({
 	},
 })
 
-lspconfig.svelte.setup({
-	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
+-- configure css server
+lspconfig["cssls"].setup({
 	capabilities = capabilities,
-	settings = {
-		svelte = {
-			plugin = {
-				typescript = {
-					enabled = false,
-				},
-			},
-		},
-	},
+	on_attach = on_attach,
+})
+
+-- configure tailwindcss server
+lspconfig["tailwindcss"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- configure svelte server
+lspconfig["svelte"].setup({
+	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			pattern = { "*.js", "*.ts" },
+			callback = function(ctx)
+				if client.name == "svelte" then
+					client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
+				end
+			end,
+		})
+	end,
 })
 
 local capable = vim.lsp.protocol.make_client_capabilities()

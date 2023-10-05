@@ -28,6 +28,8 @@ mason_lspconfig.setup({
 		"java_language_server",
 		"lua_ls",
 		"svelte",
+		"cssls",
+		"tailwindcss",
 		"html",
 	},
 	-- auto-install configured servers (with lspconfig)
