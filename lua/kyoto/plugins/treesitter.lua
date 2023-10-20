@@ -28,6 +28,7 @@ treesitter.setup({
 		"javascript",
 		"typescript",
 		"svelte",
+		"css",
 		"bash",
 		"lua",
 		"vim",
