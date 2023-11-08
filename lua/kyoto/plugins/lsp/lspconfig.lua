@@ -108,8 +108,9 @@ lspconfig["tailwindcss"].setup({
 -- configure svelte server
 lspconfig["svelte"].setup({
 	capabilities = capabilities,
+	filetypes = { "typescript", "javascript", "svelte", "html", "css" },
 	on_attach = function(client, bufnr)
-		on_attach(client, bufnr)
+		-- on_attach(client, bufnr)
 
 		vim.api.nvim_create_autocmd("BufWritePost", {
 			pattern = { "*.js", "*.ts" },
