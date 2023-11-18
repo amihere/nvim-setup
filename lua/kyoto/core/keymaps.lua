@@ -20,6 +20,7 @@ keymap.set("n", "x", '"_x')
 keymap.set("n", "<leader>|", "<C-w>v") -- split window vertically
 keymap.set("n", "<leader>-", "<C-w>s") -- split window horizontally
 keymap.set("n", "<leader>q", "<C-w>q") -- close current split window
+keymap.set("n", "<leader>w", "<C-w>w") -- toggle between open windows
 
 ----------------------
 -- Plugin Keybinds
