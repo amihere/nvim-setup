@@ -77,6 +77,14 @@ lspconfig.pylsp.setup({
 	},
 })
 
+lspconfig.gopls.setup({
+	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
 lspconfig.java_language_server.setup({
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
