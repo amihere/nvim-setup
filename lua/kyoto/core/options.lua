@@ -39,3 +39,7 @@ opt.splitbelow = true
 opt.incsearch = true
 opt.hlsearch = false
 opt.scrolloff = 8
+
+-- TJ
+opt.list = true
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
