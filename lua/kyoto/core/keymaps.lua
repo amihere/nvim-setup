@@ -40,7 +40,13 @@ keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if ne
 keymap.set("n", "<leader>zz", "<cmd>FloatermNew --height=1.0 --width=1.0 lazygit<CR>")
 
 -- run elixir commands
-keymap.set("n", "<leader>zx", ":FloatermNew iex -S mix<CR>")
+keymap.set("n", "<leader>zx", "<cmd>:silent !tmux splitw -l 20 -d iex -S mix<CR>")
+keymap.set("n", "<leader>zX", function()
+	local filename = vim.fn.expand("%:t:r")
+	vim.cmd(":silent !tmux send-keys -t 1 'r " .. filename .. "' C-m")
+end, { desc = "Reload Elixir server running in tab 1" })
+
+-- keymap.set("n", "<leader>zx", ":FloatermNew iex -S mix<CR>")
 keymap.set("n", "<leader>zb", ":FloatermNew mix run --no-halt")
 
 -- harpoon
@@ -95,3 +101,5 @@ vim.keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader><leader>", function()
 	vim.cmd("so")
 end)
+
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
