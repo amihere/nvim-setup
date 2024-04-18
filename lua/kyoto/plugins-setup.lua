@@ -105,6 +105,9 @@ return packer.startup(function(use)
 	-- harpoon
 	use({ "ThePrimeagen/harpoon" })
 
+	-- undo tree
+	use("mbbill/undotree")
+
 	use({
 		"folke/which-key.nvim",
 		config = function()
