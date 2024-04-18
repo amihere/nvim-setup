@@ -40,8 +40,6 @@ return packer.startup(function(use)
 			vim.cmd("colorscheme rose-pine")
 		end,
 	})
-	-- use({ "thedenisnikulin/vim-cyberpunk", as = "vim-cyberpunk" }) -- preferred colorscheme
-	-- use({ "seandewar/paragon.vim", as = "paragon" }) -- preferred colorscheme
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
@@ -106,6 +104,9 @@ return packer.startup(function(use)
 
 	-- harpoon
 	use({ "ThePrimeagen/harpoon" })
+
+	-- undo tree
+	use("mbbill/undotree")
 
 	use({
 		"folke/which-key.nvim",
