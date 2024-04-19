@@ -25,7 +25,6 @@ mason_lspconfig.setup({
 		"elixirls",
 		"biome",
 		"pylsp",
-		"java_language_server",
 		"lua_ls",
 		"svelte",
 		"cssls",
