@@ -31,7 +31,13 @@ Macbook Pro, OS: Monterrey. Homebrew, iTerm2
 
 ## credit
 
-Josean Martinez
-https://www.youtube.com/watch?v=vdn_pKJUda8
+Josean Martinez  
+https://www.youtube.com/watch?v=vdn_pKJUda8  
+
+ThePrimeagen  
+https://github.com/ThePrimeagen/.dotfiles  
+
+Matthias  
+https://github.com/mfussenegger  
 
 
