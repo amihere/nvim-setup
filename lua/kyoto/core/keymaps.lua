@@ -50,7 +50,6 @@ keymap.set("n", "<leader>zX", function()
 	vim.cmd(":silent !tmux send-keys -t 1 'recompile' C-m")
 end, { desc = "Reload Elixir server running in tab 1" })
 
--- keymap.set("n", "<leader>zx", ":FloatermNew iex -S mix<CR>")
 keymap.set("n", "<leader>zb", ":FloatermNew mix run --no-halt")
 
 -- harpoon

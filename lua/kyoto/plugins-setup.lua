@@ -108,6 +108,10 @@ return packer.startup(function(use)
 	-- undo tree
 	use("mbbill/undotree")
 
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
+	use("theHamsta/nvim-dap-virtual-text")
+	use("mfussenegger/nvim-jdtls")
+
 	use({
 		"folke/which-key.nvim",
 		config = function()
