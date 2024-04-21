@@ -34,6 +34,8 @@ keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 keymap.set("n", "<leader>fF", "<cmd>Telescope git_files<cr>") -- git file search
 
+keymap.set("c", ":", "<cmd>Telescope commands<cr>") -- opens command list
+
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
 -- open git terminal
