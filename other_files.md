@@ -82,7 +82,7 @@ run '~/.tmux/plugins/tpm/tpm'
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/Documents/Play/Python ~/Documents/Play ~/Documents/Play/Svelte ~/Documents/Play/Elixir ~/.config ~/.config/nvim -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/.config ~/.config/nvim -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
