@@ -112,16 +112,14 @@ return packer.startup(function(use)
 	use("theHamsta/nvim-dap-virtual-text")
 	use("mfussenegger/nvim-jdtls")
 
+	use({ "nvim-telescope/telescope-ui-select.nvim" })
+
 	use({
 		"folke/which-key.nvim",
 		config = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 200
-			require("which-key").setup({
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			})
+			require("which-key").setup({})
 		end,
 	})
 	if packer_bootstrap then
