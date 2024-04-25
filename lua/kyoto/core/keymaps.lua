@@ -61,7 +61,7 @@ keymap.set("n", "<leader>.", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
 keymap.set("n", "<leader>,", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")
 
 -- new wave
-vim.keymap.set("n", "<leader>fv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>fv", vim.cmd.Ex, { desc = "Open File Tree" })
 
 -- moving lines up and down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
