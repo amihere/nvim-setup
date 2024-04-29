@@ -93,10 +93,6 @@ return packer.startup(function(use)
 			ts_update()
 		end,
 	})
-
-	-- auto closing
-	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
-
 	-- git integration
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
@@ -108,6 +104,7 @@ return packer.startup(function(use)
 	-- undo tree
 	use("mbbill/undotree")
 
+	-- java debugging
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
 	use("theHamsta/nvim-dap-virtual-text")
 	use("mfussenegger/nvim-jdtls")
