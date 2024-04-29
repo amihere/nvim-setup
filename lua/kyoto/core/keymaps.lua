@@ -39,20 +39,25 @@ keymap.set("c", ":", "<cmd>Telescope commands<cr>") -- opens command list
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
 -- open git terminal
-keymap.set("n", "<leader>zz", "<cmd>FloatermNew --height=1.0 --width=1.0 lazygit<CR>", { desc = "Open Git" })
+keymap.set("n", "<leader>zz", "<cmd>silent !tmux neww lazygit<CR>", { desc = "Open Git" })
 
 -- run elixir commands
 keymap.set(
 	"n",
 	"<leader>zx",
-	"<cmd>:silent !tmux splitw -l 20 -d iex -S mix<CR>",
+	"<cmd>silent !tmux splitw -l 20 -d iex -S mix<CR>",
 	{ desc = "Run Elixir Mix in new tab" }
 )
 keymap.set("n", "<leader>zX", function()
 	vim.cmd(":silent !tmux send-keys -t 1 'recompile' C-m")
 end, { desc = "Reload Elixir server running in tab 1" })
 
-keymap.set("n", "<leader>zb", ":FloatermNew mix run --no-halt")
+keymap.set(
+	"n",
+	"<leader>zb",
+	"<cmd>silent !tmux splitw -l 20 -d mix run --no-halt<CR>",
+	{ desc = "Run Elixir process as prod" }
+)
 
 -- harpoon
 keymap.set("n", "<leader>a", "<cmd>lua require('harpoon.mark').add_file()<cr>")
