@@ -96,8 +96,6 @@ return packer.startup(function(use)
 	-- git integration
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
-	use("voldikss/vim-floaterm")
-
 	-- harpoon
 	use({ "ThePrimeagen/harpoon" })
 
