@@ -66,7 +66,7 @@ keymap.set("n", "<leader>.", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
 keymap.set("n", "<leader>,", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")
 
 -- new wave
-vim.keymap.set("n", "<leader>fv", vim.cmd.Ex, { desc = "Open File Tree" })
+keymap.set("n", "<leader>fv", vim.cmd.Ex, { desc = "Open File Tree" })
 
 -- moving lines up and down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -92,23 +92,23 @@ keymap.set("n", "<leader>Y", [["+Y]])
 keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- This is going to get me cancelled
-vim.keymap.set("i", "<C-c>", "<Esc>")
+keymap.set("i", "<C-c>", "<Esc>")
 
-vim.keymap.set("n", "Q", "<nop>")
-vim.keymap.set("n", "<C-f>", "<cmd>silent !~/.local/bin/tmux-sessionizer<CR>")
+keymap.set("n", "Q", "<nop>")
+keymap.set("n", "<C-f>", "<cmd>silent !~/.local/bin/tmux-sessionizer<CR>")
 
-vim.keymap.set("x", "<leader>f", vim.lsp.buf.format)
+keymap.set("x", "<leader>f", vim.lsp.buf.format)
 
-vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
+keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
+keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
+keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader><leader>", function()
+keymap.set("n", "<leader><leader>", function()
 	vim.cmd("so")
 end)
 
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
