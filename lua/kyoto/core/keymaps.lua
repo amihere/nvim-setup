@@ -41,6 +41,8 @@ keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if ne
 -- open git terminal
 keymap.set("n", "<leader>zz", "<cmd>silent !tmux neww lazygit<CR>", { desc = "Open Git" })
 
+keymap.set("n", "<leader>Z", ":silent !tmux splitw -l 20 -d ", { desc = "Start a new script..." })
+
 -- run elixir commands
 keymap.set(
 	"n",
@@ -48,6 +50,7 @@ keymap.set(
 	"<cmd>silent !tmux splitw -l 20 -d iex -S mix<CR>",
 	{ desc = "Run Elixir Mix in new tab" }
 )
+
 keymap.set("n", "<leader>zX", function()
 	vim.cmd(":silent !tmux send-keys -t 1 'recompile' C-m")
 end, { desc = "Reload Elixir server running in tab 1" })
