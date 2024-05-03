@@ -33,6 +33,19 @@ keymap.set("n", "<leader>fg", "<cmd>Telescope grep_string<cr>") -- find string u
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 keymap.set("n", "<leader>fF", "<cmd>Telescope git_files<cr>") -- git file search
+keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>") -- show colors
+keymap.set(
+	"n",
+	"<leader>fww",
+	"<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
+	{ desc = "Open worktrees", silent = true }
+) -- git worktrees
+keymap.set(
+	"n",
+	"<leader>fwc",
+	"<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
+	{ desc = "Create worktrees", silent = true }
+) -- create git worktree
 
 keymap.set("c", ":", "<cmd>Telescope commands<cr>") -- opens command list
 

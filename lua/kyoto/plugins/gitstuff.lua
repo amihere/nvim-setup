@@ -6,3 +6,5 @@ end
 
 -- configure/enable gitsigns
 gitsigns.setup()
+
+require("git-worktree").setup()
