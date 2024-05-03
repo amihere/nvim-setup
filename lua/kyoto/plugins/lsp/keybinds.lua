@@ -1,7 +1,7 @@
 local M = {}
 
 function M.on_attach(client, bufnr)
-  local keymap = vim.keymap
+	local keymap = vim.keymap
 
 	-- keybind options
 	local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -42,9 +42,6 @@ function M.on_attach(client, bufnr)
 	keymap.set("i", "<C-k>", function()
 		vim.lsp.buf.signature_help()
 	end, opts)
-	-- keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
-	-- Toggle outline
-	keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
 end
 
 return M
