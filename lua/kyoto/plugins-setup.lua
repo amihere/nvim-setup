@@ -91,7 +91,7 @@ return packer.startup(function(use)
 
 	-- harpoon
 	use({ "ThePrimeagen/harpoon" })
-	use({ "ThePrimeagen/git-worktree.nvim" })
+	use({ "amihere/git-worktree.nvim" })
 
 	-- undo tree
 	use("mbbill/undotree")
