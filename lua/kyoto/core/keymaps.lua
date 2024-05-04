@@ -26,6 +26,9 @@ keymap.set("n", "<leader>w", "<C-w>w") -- toggle between open windows
 -- Plugin Keybinds
 ----------------------
 
+-- twilight toggle
+keymap.set("n", "<leader>l", "<cmd>Twilight<cr>") -- toggle the twilight option
+
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
 keymap.set("n", "<leader>fG", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
