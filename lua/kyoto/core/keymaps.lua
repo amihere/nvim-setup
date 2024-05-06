@@ -39,6 +39,12 @@ keymap.set("n", "<leader>fF", "<cmd>Telescope git_files<cr>") -- git file search
 keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>") -- show colors
 keymap.set(
 	"n",
+	"<leader>fo",
+	"<cmd>lua require('telescope.builtin').lsp_document_symbols({symbols = {'function', 'method'} })<cr>",
+	{ desc = "Filter methods/functions" }
+) -- filter methods/functions
+keymap.set(
+	"n",
 	"<leader>fww",
 	"<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
 	{ desc = "Open worktrees", silent = true }
