@@ -97,7 +97,7 @@ return packer.startup(function(use)
 	use("mbbill/undotree")
 
 	-- java debugging
-	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
+	use({ "mfussenegger/nvim-dap" })
 	use("theHamsta/nvim-dap-virtual-text")
 	use("mfussenegger/nvim-jdtls")
 
