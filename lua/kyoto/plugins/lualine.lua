@@ -20,11 +20,21 @@ lualine.setup({
 		theme = lualine_theme,
 		icons_enabled = false,
 		section_separators = { left = "" },
+		component_separators = { left = "" },
 		globalstatus = true,
 	},
 
 	sections = {
-		lualine_x = { "filetype" },
+		lualine_c = {
+			function()
+				return require("nvim-treesitter").statusline({
+					indicator_size = 60,
+					type_patterns = { "function", "method" },
+					separator = " > ",
+				})
+			end,
+		},
+		lualine_x = { "filename" },
 		lualine_z = {},
 	},
 })
