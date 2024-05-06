@@ -16,12 +16,12 @@ dap.listeners.before.event_exited.dapui_config = function()
 	dapui.close()
 end
 
-vim.fn.sign_define(
-	"DapBreakpoint",
-	{ text = "🔴", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
-)
-
 -- Debugger Keymaps
-vim.api.nvim_set_keymap("n", "<leader>dt", ":lua require('dapui').toggle()<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>db", ":DapToggleBreakpoint<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>dc", ":DapContinue<CR>", { noremap = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>dt",
+	":lua require('dapui').toggle()<CR>",
+	{ desc = "Toggle UI for debugging", noremap = true }
+)
+vim.api.nvim_set_keymap("n", "<leader>db", ":DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint", noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>dc", ":DapContinue<CR>", { desc = "Start/Resume Debugger", noremap = true })
