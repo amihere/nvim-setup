@@ -21,6 +21,10 @@ cmp.setup({
 			luasnip.lsp_expand(args.body)
 		end,
 	},
+	completion = {
+		autocomplete = false,
+		keyword_length = 3,
+	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 		["<S-Tab>"] = cmp.mapping.select_prev_item(), -- previous suggestion
