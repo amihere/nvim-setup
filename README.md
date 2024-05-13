@@ -18,7 +18,7 @@ Run ```brew install tmux```
 Create files ```~/.tmux.conf``` and ```~/.local/bin/tmux-sessionizer```. See other_files.md
 Make tmux-sessionizer executable by using ```chmod u+x```
 
-#### create a .zshrc.local in your ~ folder
+#### create a .zshrc.local in your ~ folder, if zsh is your shell. Use .bashrc if needed
 ```bindkey -s "^f" "~/.local/bin/tmux-sessionizer^M"```
 
 #### packer not installing
