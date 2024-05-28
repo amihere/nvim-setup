@@ -43,3 +43,9 @@ opt.scrolloff = 8
 -- TJ
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+-- Folds
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldtext = ""
+opt.foldlevelstart = 1
