@@ -47,5 +47,6 @@ opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 -- Folds
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldtext = ""
 opt.foldlevelstart = 1
+opt.foldnestmax = 2
+opt.fml = 3
