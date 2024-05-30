@@ -1,5 +1,7 @@
 local opt = vim.opt
 
+vim.g.netrw_liststyle = 3
+
 -- line numbers
 opt.relativenumber = true
 opt.number = true
