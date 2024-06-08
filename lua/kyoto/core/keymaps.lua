@@ -65,6 +65,8 @@ keymap.set("n", "<leader>zz", "<cmd>silent !tmux neww lazygit<CR>", { desc = "Op
 
 keymap.set("n", "<leader>Z", ":silent !tmux splitw -l 20 -d ", { desc = "Start a new script..." })
 
+keymap.set("n", "<leader>o", "zi", { desc = "Toggle all folds" })
+
 -- run elixir commands
 keymap.set(
 	"n",
