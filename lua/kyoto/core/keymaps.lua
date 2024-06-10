@@ -139,3 +139,9 @@ keymap.set("n", "<leader><leader>", function()
 end)
 
 keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+-- open a terminal
+keymap.set("n", "<leader>t", function()
+	vim.cmd("split | term")
+	vim.cmd("startinsert")
+end)
