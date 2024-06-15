@@ -37,7 +37,7 @@ keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 keymap.set("n", "<leader>fF", "<cmd>Telescope git_files<cr>") -- git file search
 keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>") -- show colors
-keymap.set("c", "<leader>fC", "<cmd>Telescope commands<cr>") -- opens command list
+keymap.set("n", "<leader>fC", "<cmd>Telescope commands<cr>") -- opens command list
 keymap.set(
 	"n",
 	"<leader>fo",
