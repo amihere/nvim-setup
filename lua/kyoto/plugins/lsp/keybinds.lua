@@ -39,6 +39,11 @@ function M.on_attach(client, bufnr)
 
 	opts.desc = "Go to next diagnostic"
 	keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+
+	opts.desc = "Run Hover"
+	keymap.set("n", "K", vim.lsp.buf.hover, opts)
+
+	opts.desc = "Ask for signature help"
 	keymap.set("n", "<leader><C-k>", function()
 		vim.lsp.buf.signature_help()
 	end, opts)
