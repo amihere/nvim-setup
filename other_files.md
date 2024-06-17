@@ -16,13 +16,19 @@ unbind C-b
 bind-key C-a send-prefix
 set -g status-style 'bg=#333333 fg=#5eacd3'
 
+bind -r Tab last-window
+
 unbind %
-bind | split-window -h
+bind | split-window -fh -c "#{pane_current_path}"
+bind-key "\\" split-window -h -c "#{pane_current_path}"
 
 unbind '"'
-bind - split-window -v
+bind - split-window -v -c "#{pane_current_path}"
 
-bind r source-file ~/.tmux.conf
+bind-key "_" split-window -fv -c "#{pane_current_path}"
+
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
 set -g base-index 1
 
 set-window-option -g mode-keys vi
@@ -30,7 +36,6 @@ bind -T copy-mode-vi v send-keys -X begin-selection
 bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
 
 # vim-like pane switching
-bind -r ^ last-window
 bind -r k select-pane -U
 bind -r j select-pane -D
 bind -r h select-pane -L
@@ -41,11 +46,22 @@ bind -r m resize-pane -D 15
 # bind -r C-M resize-pane -U 15
 bind -r C-M select-layout tiled
 
-bind-key -r G run-shell "$HOME/.local/share/nvim/site/pack/packer/start/harpoon/scripts/tmux/switch-back-to-nvim"
+bind c new-window -c "#{pane_current_path}"
+bind-key & kill-window
+bind-key X kill-pane
 
 bind-key -r f run-shell "tmux neww ~/.local/bin/tmux-sessionizer"
 
 bind Q confirm-before -p "shutdown? (y/n)" kill-server
+
+# tmux search
+
+# Search backwards with prefix-/
+bind / copy-mode \; send ?
+
+bind C-u copy-mode \; send -X search-backward "(https?://|git@|git://|ssh://|ftp://|file:///)[[:alnum:]?=%/_.:,;~@!#$&()*+-]*"
+
+bind C-f copy-mode \; send -X search-backward "(^|^\.|[[:space:]]|[[:space:]]\.|[[:space:]]\.\.|^\.\.)[[:alnum:]~_-]*/[][[:alnum:]_.#$%&+=/@-]*"
 
 # tpm plugin
 set -g @plugin 'tmux-plugins/tpm'
@@ -53,8 +69,6 @@ set -g @plugin 'tmux-plugins/tpm'
 # list of tmux plugins
 
 set -g @plugin 'christoomey/vim-tmux-navigator' # move seamlessly from nvim to tmux
-
-set -g @plugin 'srcery-colors/srcery-tmux'
 
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 
@@ -64,7 +78,8 @@ set -g @resurrect-strategy-nvim 'session'
 # hardcoded tmux resurrect to save on each detach event. todo: abstract call.
 set-hook -g 'client-detached' 'run "~/.tmux/plugins/tmux-resurrect/scripts/save.sh"'
 
-# set-hook -g 'client-detached' run-shell 'display-message "I split this window!"'
+### theme settings ###
+source-file "~/.tmux.theme.conf"
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
