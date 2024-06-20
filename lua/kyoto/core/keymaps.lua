@@ -139,6 +139,7 @@ end)
 
 keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
+keymap.set("n", "<C-l>", "<cmd>set rnu!<cr>")
 -- open a terminal
 keymap.set("n", "<leader>t", function()
 	vim.cmd("split | term")
