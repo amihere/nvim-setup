@@ -103,7 +103,7 @@ return packer.startup(function(use)
 
 	use({ "nvim-telescope/telescope-ui-select.nvim" })
 	use({ "folke/twilight.nvim" })
-	use({ "vim-scripts/Typer" })
+	use({ "amihere/Typer" })
 	use({
 		"folke/which-key.nvim",
 		config = function()
