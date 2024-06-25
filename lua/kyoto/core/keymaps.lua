@@ -26,9 +26,6 @@ keymap.set("n", "<leader>w", "<C-w>w") -- toggle between open windows
 -- Plugin Keybinds
 ----------------------
 
--- twilight toggle
-keymap.set("n", "<leader>l", "<cmd>Twilight<cr>") -- toggle the twilight option
-
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
 keymap.set("n", "<leader>fG", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
@@ -139,7 +136,12 @@ end)
 
 keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
-keymap.set("n", "<C-l>", "<cmd>set rnu!<cr>")
+-- twilight
+keymap.set("n", "<leader>ll", "<cmd>Twilight<cr>") -- toggle the twilight option
+
+-- lines
+keymap.set("n", "<leader>ln", "<cmd>set rnu!<cr>")
+
 -- open a terminal
 keymap.set("n", "<leader>t", function()
 	vim.cmd("split | term")
