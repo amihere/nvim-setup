@@ -143,7 +143,14 @@ keymap.set("n", "<leader>ll", "<cmd>Twilight<cr>") -- toggle the twilight option
 keymap.set("n", "<leader>ln", "<cmd>set rnu!<cr>")
 
 -- open a terminal
-keymap.set("n", "<leader>t", function()
+keymap.set("t", "<ESC>", "<C-\\><C-n>", { silent = true, desc = "Escape terminal mode" })
+keymap.set("n", "<leader>tt", function()
 	vim.cmd("split | term")
 	vim.cmd("startinsert")
-end)
+end, { silent = true, desc = "Open 50/50 terminal" })
+
+keymap.set("n", "<leader>ts", function()
+	vim.cmd("10split | term")
+	vim.cmd("startinsert")
+end, { silent = true, desc = "Open a smaller terminal" })
+
