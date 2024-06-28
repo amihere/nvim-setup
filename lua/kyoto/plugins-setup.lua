@@ -103,7 +103,19 @@ return packer.startup(function(use)
 
 	use({ "nvim-telescope/telescope-ui-select.nvim" })
 	use({ "folke/twilight.nvim" })
-	use({ "amihere/Typer" })
+	use({ "amihere/wizardry" })
+		use({
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+		end,
+	})
+	
+	use({
+		"benfowler/telescope-luasnip.nvim",
+		module = "telescope._extensions.luasnip", -- if you wish to lazy-load
+	})
+	
 	use({
 		"folke/which-key.nvim",
 		config = function()
