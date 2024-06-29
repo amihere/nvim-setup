@@ -86,6 +86,65 @@ run '~/.tmux/plugins/tpm/tpm'
 
 ```
 
+### ~/.tmux.conf.theme
+```
+# window separators
+set-option -wg window-status-separator " "
+
+# set statusbar update interval
+set-option -g status-interval 1
+
+### colorscheme ###
+# change window screen colors
+set-option -wg mode-style bg="#f6c177",fg="#3c3836"
+
+# default statusbar colors (terminal bg should be #282828)
+set-option -g status-style bg=terminal,fg="#f6c177"
+
+# default window title colors
+set-option -wg window-status-style bg="#000000",fg="#848884"
+
+# colors for windows with activity
+set-option -wg window-status-activity-style bg="#3c3836",fg="#a89984"
+
+# colors for windows with bells
+set-option -wg window-status-bell-style bg="#3c3836",fg="#f6c177"
+
+# active window title colors
+set-option -wg window-status-current-style bg="#000000",fg="#f6c177"
+
+# pane border
+set-option -g pane-active-border-style fg="#f6c177"
+set-option -g pane-border-style fg="#3c3836"
+
+# message info
+set-option -g message-style bg="#f6c177",fg="#3c3836"
+
+# writing commands inactive
+set-option -g message-command-style bg="#a89984",fg="#3c3836"
+
+# pane number display
+set-option -g display-panes-active-colour "#f6c177"
+set-option -g display-panes-colour "#848884"
+
+# clock
+set-option -wg clock-mode-colour "#f6c177"
+
+# copy mode highlighting
+%if #{>=:#{version},3.2}
+    set-option -wg copy-mode-match-style "bg=#a89984,fg=#3c3836"
+    set-option -wg copy-mode-current-match-style "bg=#f6c177,fg=#3c3836"
+%endif
+
+# statusbar formatting
+# "#a89986" MUST be in lowercase here (conflicts with statusline alias otherwise)
+set-option -g status-left "#[bg=#000000, fg=default bold] #{window_index} "
+set-option -g status-right "#[bg=#000000, fg=#848884] %a %d %H:%M    #[bg=#000000, fg=default]#{session_name}    #[bg=#000003, fg=#848884]#{?client_prefix,#[fg=#f6c177],#[bg=#000000]} #{host_short} "
+
+set-option -wg window-status-current-format "#{?window_zoomed_flag,#[fg=default bold],#[fg=default]} #{?window_zoomed_flag, #{window_name}*, #{window_name}} "
+set-option -wg window-status-format "#{?window_zoomed_flag,#[fg=default bold],#[fg=default]} #{window_name} "
+```
+
 ### ~/.local/bin/tmux.sessionizer
 
 ```
