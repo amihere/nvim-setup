@@ -37,7 +37,7 @@ keymap.set("n", "<leader>fs", "<cmd>Telescope luasnip<cr>") -- open snippets for
 keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>") -- show colors
 keymap.set("n", "<leader>fC", "<cmd>Telescope commands<cr>") -- opens command list
 keymap.set("n", "<leader>fv", "<cmd>Oil<cr>", { desc = "Open File Tree" })
-keymap.set("n", "<leader>fn", vim.lsp.buf.format)
+keymap.set("n", "<leader>fn", vim.lsp.buf.format, { desc = "Format file" })
 
 keymap.set(
 	"n",
