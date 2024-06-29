@@ -104,16 +104,9 @@ return packer.startup(function(use)
 	use({ "nvim-telescope/telescope-ui-select.nvim" })
 	use({ "folke/twilight.nvim" })
 	use({ "amihere/wizardry" })
-	use({
-		"stevearc/oil.nvim",
-		config = function()
-			require("oil").setup()
-		end,
-	})
+	use({ "stevearc/oil.nvim" })
 
-	use({
-		"benfowler/telescope-luasnip.nvim",
-	})
+	use({ "benfowler/telescope-luasnip.nvim" })
 
 	use({
 		"folke/which-key.nvim",
