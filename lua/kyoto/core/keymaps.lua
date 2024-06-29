@@ -28,8 +28,8 @@ keymap.set("n", "<leader>w", "<C-w>w") -- toggle between open windows
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
-keymap.set("n", "<leader>fG", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
-keymap.set("n", "<leader>fg", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
+keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
+keymap.set("n", "<leader>fG", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 keymap.set("n", "<leader>fF", "<cmd>Telescope git_files<cr>") -- git file search
@@ -37,6 +37,7 @@ keymap.set("n", "<leader>fs", "<cmd>Telescope luasnip<cr>") -- open snippets for
 keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>") -- show colors
 keymap.set("n", "<leader>fC", "<cmd>Telescope commands<cr>") -- opens command list
 keymap.set("n", "<leader>fv", "<cmd>Oil<cr>", { desc = "Open File Tree" })
+keymap.set("n", "<leader>fn", vim.lsp.buf.format)
 
 keymap.set(
 	"n",
@@ -119,8 +120,6 @@ keymap.set("i", "<C-c>", "<Esc>")
 
 keymap.set("n", "Q", "<nop>")
 keymap.set("n", "<C-f>", "<cmd>silent !~/.local/bin/tmux-sessionizer<CR>")
-
-keymap.set("x", "<leader>f", vim.lsp.buf.format)
 
 keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
 keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
