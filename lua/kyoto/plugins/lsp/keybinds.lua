@@ -47,7 +47,10 @@ function M.on_attach(client, bufnr)
 	end, opts)
 
 	opts.desc = "Ask for signature help"
-	keymap.set("n", "<leader><C-k>", function()
+	keymap.set("n", "<gK>", function()
+		vim.lsp.buf.signature_help()
+	end, opts)
+	keymap.set("i", "<C-k>", function()
 		vim.lsp.buf.signature_help()
 	end, opts)
 end
