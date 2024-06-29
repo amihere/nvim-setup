@@ -20,6 +20,7 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- cursor line
+opt.cursorline = true
 opt.guicursor = ""
 
 -- appearance
