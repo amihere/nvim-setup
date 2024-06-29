@@ -36,6 +36,8 @@ keymap.set("n", "<leader>fF", "<cmd>Telescope git_files<cr>") -- git file search
 keymap.set("n", "<leader>fs", "<cmd>Telescope luasnip<cr>") -- open snippets for lang
 keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>") -- show colors
 keymap.set("n", "<leader>fC", "<cmd>Telescope commands<cr>") -- opens command list
+keymap.set("n", "<leader>fv", "<cmd>Oil<cr>", { desc = "Open File Tree" })
+
 keymap.set(
 	"n",
 	"<leader>fo",
@@ -88,9 +90,6 @@ keymap.set("n", "<leader>a", "<cmd>lua require('harpoon.mark').add_file()<cr>")
 keymap.set("n", "<C-e>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>") -- harpoon quick command
 keymap.set("n", "<leader>.", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
 keymap.set("n", "<leader>,", "<cmd>lua require('harpoon.ui').nav_prev()<cr>")
-
--- new wave
-keymap.set("n", "<leader>fv", vim.cmd.Ex, { desc = "Open File Tree" })
 
 -- moving lines up and down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -154,4 +153,3 @@ keymap.set("n", "<leader>ts", function()
 	vim.cmd("10split | term")
 	vim.cmd("startinsert")
 end, { silent = true, desc = "Open a smaller terminal" })
-
