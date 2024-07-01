@@ -17,6 +17,7 @@ bind-key C-a send-prefix
 set -g status-style 'bg=#333333 fg=#5eacd3'
 
 bind -r Tab last-window
+bind C-b "set status"
 
 unbind %
 bind | split-window -fh -c "#{pane_current_path}"
