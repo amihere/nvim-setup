@@ -50,10 +50,6 @@ function M.on_attach(client, bufnr)
 		vim.lsp.buf.hover()
 		vim.lsp.buf.hover()
 	end, opts)
-
-	keymap.set("i", "<C-k>", function()
-		vim.lsp.buf.signature_help()
-	end, opts)
 end
 
 return M
