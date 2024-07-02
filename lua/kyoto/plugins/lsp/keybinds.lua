@@ -34,11 +34,16 @@ function M.on_attach(client, bufnr)
 	opts.desc = "Show line diagnostics"
 	keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
-	opts.desc = "Go to previous diagnostic"
-	keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+	opts.desc = "toggle inlay hints"
+	keymap.set("n", "<leader>hi", function()
+		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
+	end, opts) -- toggle inlay hints
+	opts.desc = "Ask for signature help"
 
-	opts.desc = "Go to next diagnostic"
-	keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+	keymap.set("n", "<leader>hs", function()
+		vim.lsp.buf.signature_help()
+		vim.lsp.buf.signature_help()
+	end, opts)
 
 	opts.desc = "Run Hover"
 	keymap.set("n", "K", function()
@@ -46,10 +51,6 @@ function M.on_attach(client, bufnr)
 		vim.lsp.buf.hover()
 	end, opts)
 
-	opts.desc = "Ask for signature help"
-	keymap.set("n", "<gK>", function()
-		vim.lsp.buf.signature_help()
-	end, opts)
 	keymap.set("i", "<C-k>", function()
 		vim.lsp.buf.signature_help()
 	end, opts)
