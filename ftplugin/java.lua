@@ -95,14 +95,14 @@ local config = {
 				includeDecompiledSources = true,
 			},
 			implementationsCodeLens = {
-				enabled = false,
+				enabled = true,
 			},
 			referenceCodeLens = {
 				enabled = true,
 			},
 			inlayHints = {
 				parameterNames = {
-					enabled = "none",
+					enabled = "all",
 				},
 			},
 			signatureHelp = {
@@ -185,6 +185,7 @@ end
 
 config["on_attach"] = function(client, bufnr)
 	local _, _ = pcall(vim.lsp.codelens.refresh)
+
 	require("jdtls").setup_dap({ hotcodereplace = "auto" })
 	require("kyoto.plugins.lsp.keybinds").on_attach(client, bufnr)
 	local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
