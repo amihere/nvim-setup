@@ -14,14 +14,10 @@ end
 local on_attach = require("kyoto.plugins.lsp.keybinds").on_attach
 
 -- used to enable autocompletion (assign to every lsp server config)
-local capabilities = vim.tbl_deep_extend(
-            "force",
-            {},
-            vim.lsp.protocol.make_client_capabilities(),
-            cmp_nvim_lsp.default_capabilities())
+local capabilities =
+	vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities(), cmp_nvim_lsp.default_capabilities())
 
 -- Change the Diagnostic symbols in the sign column (gutter)
--- (not in youtube nvim video)
 local signs = { Error = " ", Warn = " ", Hint = "󱐋", Info = " " }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
