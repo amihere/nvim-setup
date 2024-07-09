@@ -17,6 +17,7 @@ bind-key C-a send-prefix
 set -g status-style 'bg=#333333 fg=#5eacd3'
 
 bind -r Tab last-window
+# allow hiding the status bar
 bind C-b "set status"
 
 unbind %
