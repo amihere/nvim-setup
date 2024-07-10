@@ -41,6 +41,12 @@ keymap.set("n", "<leader>fn", vim.lsp.buf.format, { desc = "Format file" })
 
 keymap.set(
 	"n",
+	"<leader>fa",
+	"<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
+	{ desc = "All symbols" }
+)
+keymap.set(
+	"n",
 	"<leader>fo",
 	"<cmd>lua require('telescope.builtin').lsp_document_symbols({symbols = {'function', 'method'} })<cr>",
 	{ desc = "Filter methods/functions" }
