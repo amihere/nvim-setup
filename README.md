@@ -1,5 +1,5 @@
 # nvim-setup
-basic setup for neovim. using as a basic ide for weird hobby languages.
+neovim dotfiles. Supports: Go, Java, Elixir, Svelte, Python
 
 ## some extra steps needed
 
