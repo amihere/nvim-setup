@@ -8,7 +8,7 @@ Download from here: https://www.nerdfonts.com/#home<br>
 Install by double clicking and install, then configure iTerm to use in **Preferences/Profiles/Text/Font**<br>
 (only if icons don't show) Go to cheat sheet here: https://www.nerdfonts.com/cheat-sheet. Copy icons and replace in lua plugin files.
 
-#### install these
+#### search & regex 
 
 + Homebrew  
 ```brew install fd ripgrep fzf```
