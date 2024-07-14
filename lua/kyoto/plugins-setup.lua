@@ -113,7 +113,11 @@ return packer.startup(function(use)
 		config = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 200
-			require("which-key").setup({})
+			require("which-key").setup({
+			  icons = {
+			    rules = false,
+		          },
+			})
 		end,
 	})
 	if packer_bootstrap then
