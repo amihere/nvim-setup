@@ -5,8 +5,6 @@ set -ga terminal-overrides ",screen-256color*:Tc"
 set-option -g default-terminal "screen-256color"
 set -s escape-time 0
 
-set -g mouse on
-
 set-option -g detach-on-destroy off
 
 set -g renumber-windows on # renumber windows
@@ -17,7 +15,6 @@ bind-key C-a send-prefix
 set -g status-style 'bg=#333333 fg=#5eacd3'
 
 bind -r Tab last-window
-# allow hiding the status bar
 bind C-b "set status"
 
 unbind %
@@ -37,20 +34,22 @@ set-window-option -g mode-keys vi
 bind -T copy-mode-vi v send-keys -X begin-selection
 bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
 
-# vim-like pane switching
-bind -r k select-pane -U
-bind -r j select-pane -D
-bind -r h select-pane -L
-bind -r l select-pane -R
+# resize panes
+bind -r Up resize-pane -U 10
+bind -r Down resize-pane -D 10
+bind -r Left resize-pane -L 10
+bind -r Right resize-pane -R 10
 
-bind -r M resize-pane -Z
-bind -r m resize-pane -D 15
+bind M resize-pane -Z
+bind m resize-pane -D 15
 # bind -r C-M resize-pane -U 15
-bind -r C-M select-layout tiled
+bind C-M select-layout tiled
 
 bind c new-window -c "#{pane_current_path}"
 bind-key & kill-window
 bind-key X kill-pane
+
+bind-key -r G run-shell "$HOME/.local/share/nvim/site/pack/packer/start/harpoon/scripts/tmux/switch-back-to-nvim"
 
 bind-key -r f run-shell "tmux neww ~/.local/bin/tmux-sessionizer"
 
@@ -79,6 +78,8 @@ set -g @resurrect-strategy-nvim 'session'
 
 # hardcoded tmux resurrect to save on each detach event. todo: abstract call.
 set-hook -g 'client-detached' 'run "~/.tmux/plugins/tmux-resurrect/scripts/save.sh"'
+
+# set-hook -g 'client-detached' run-shell 'display-message "I split this window!"'
 
 ### theme settings ###
 source-file "~/.tmux.theme.conf"

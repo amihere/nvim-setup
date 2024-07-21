@@ -161,6 +161,7 @@ local function register_keybindings()
 	local mappings = {
 		J = {
 			name = "Java",
+			s = { "<Cmd>!mvn compile spring-boot:run<CR>", "Run a spring boot app" },
 			o = { "<Cmd>lua require'jdtls'.organize_imports()<CR>", "Organize Imports" },
 			v = { "<Cmd>lua require('jdtls').extract_variable()<CR>", "Extract Variable" },
 			C = { "<Cmd>lua require('jdtls').extract_constant()<CR>", "Extract Constant" },
