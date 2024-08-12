@@ -114,9 +114,9 @@ return packer.startup(function(use)
 			vim.o.timeout = true
 			vim.o.timeoutlen = 200
 			require("which-key").setup({
-			  icons = {
-			    rules = false,
-		          },
+				icons = {
+					mappings = false,
+				},
 			})
 		end,
 	})
