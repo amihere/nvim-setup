@@ -15,8 +15,8 @@ local packer_bootstrap = ensure_packer() -- true if packer was just installed
 -- when file is saved
 vim.cmd([[
   augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
+  autocmd!
+  autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
   augroup end
 ]])
 
@@ -114,9 +114,9 @@ return packer.startup(function(use)
 			vim.o.timeout = true
 			vim.o.timeoutlen = 200
 			require("which-key").setup({
-			  icons = {
-			    rules = false,
-		          },
+				icons = {
+					mappings = false,
+				},
 			})
 		end,
 	})
