@@ -11,11 +11,13 @@ Install by double clicking and install, then configure iTerm to use in **Prefere
 #### search & regex 
 
 + Homebrew  
-```brew install fd ripgrep fzf```
+```brew install fd ripgrep fzf make```
+```brew install go```
 
 #### tmux 
 Run ```brew install tmux```
 Create files ```~/.tmux.conf``` and ```~/.local/bin/tmux-sessionizer```. See other_files.md
+Include TPM (TMUX plugin manager) by running: `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`  
 Make tmux-sessionizer executable by using ```chmod u+x```
 
 #### create a .zshrc.local in your ~ folder, if zsh is your shell. Use .bashrc if needed
