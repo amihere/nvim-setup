@@ -42,4 +42,31 @@ https://github.com/ThePrimeagen/.dotfiles
 Matthias  
 https://github.com/mfussenegger  
 
+## full deps for linux (eg. ubuntu)
+```
+sudo apt update
+sudo apt upgrade -y
+sudo apt install wget unzip git neovim xclip tmux ripgrep fzf make fd-find -y
+sudo apt install python3 python3-pip python3-venv elixir golang-go nodejs npm
+
+# Create the neovim folder
+mkdir -p .config/nvim
+mkdir -p .tmux/plugins
+mkdir -p .local/bin
+
+# Clone
+git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
+git clone https://github.com/amihere/nvim-setup .config/nvim
+
+rm -rf .config/nvim/.git
+
+# Symbolic links for tmux
+ln -s .config/nvim/tmux/.tmux.theme.conf $HOME/.tmux.theme.conf
+ln -s .config/nvim/tmux/.tmux.conf $HOME/.tmux.conf
+
+chmod u+x .config/nvim/tmux/.local/bin/tmux.sessionizer
+ln -s .config/nvim/tmux/.local/bin/tmux.sessionizer $HOME/.local/bin/.tmux.sessionizer
+
+```
+
 
