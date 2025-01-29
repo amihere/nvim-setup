@@ -7,6 +7,7 @@ end
 -- for conciseness
 local formatting = null_ls.builtins.formatting -- to setup formatters
 local diagnostics = null_ls.builtins.diagnostics -- to setup diagnostics
+local code_actions = null_ls.builtins.code_actions
 
 -- to setup format on save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -25,6 +26,12 @@ null_ls.setup({
 		formatting.prettier.with({
 			extra_filetypes = { "svelte" },
 		}),
+		formatting.gofumpt,
+		formatting.goimports,
+    code_actions.impl,
+    code_actions.gomodifytags,
+    diagnostics.golangci_lint,
+		diagnostics.revive,
 		diagnostics.eslint_d.with({
 			condition = function(utils)
 				return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs

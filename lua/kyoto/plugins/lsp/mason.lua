@@ -22,16 +22,22 @@ mason.setup()
 mason_lspconfig.setup({
 	-- list of servers for mason to install
 	ensure_installed = {
-		"elixirls",
-		"biome",
-		"pylsp",
+		-- Lua
 		"lua_ls",
+		-- Elixir
+		"elixirls",
+		-- Python
+		"pylsp",
+		-- Front end
+		"biome",
 		"svelte",
 		"cssls",
 		"tailwindcss",
 		"html",
-		"gopls",
+		-- Java
 		"jdtls",
+		-- Go
+		"gopls",
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
@@ -40,11 +46,22 @@ mason_lspconfig.setup({
 mason_null_ls.setup({
 	-- list of formatters & linters for mason to install
 	ensure_installed = {
-		"stylua", -- lua formatter
-		"ruff",
+		-- Lua
+		"stylua",
+		-- C
 		"clang_format",
+		"ruff",
 		"prettier",
 		"eslint_d",
+		-- Go
+		"gofumpt",
+		"goimports",
+		"gomodifytags",
+		"golangci-lint",
+		"gotests",
+		"iferr",
+		"impl",
+		"delve",
 	},
 	-- auto-install configured formatters & linters (with null-ls)
 	automatic_installation = true,
