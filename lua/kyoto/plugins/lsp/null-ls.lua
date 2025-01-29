@@ -25,7 +25,6 @@ null_ls.setup({
 		formatting.prettier.with({
 			extra_filetypes = { "svelte" },
 		}),
-		formatting.htmlbeautifier,
 		diagnostics.eslint_d.with({
 			condition = function(utils)
 				return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
