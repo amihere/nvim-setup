@@ -41,7 +41,6 @@ mason_null_ls.setup({
 	-- list of formatters & linters for mason to install
 	ensure_installed = {
 		"stylua", -- lua formatter
-		"htmlbeautifier",
 		"ruff",
 		"clang_format",
 		"prettier",
