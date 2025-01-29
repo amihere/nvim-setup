@@ -26,7 +26,6 @@ null_ls.setup({
 		formatting.prettier.with({
 			extra_filetypes = { "svelte" },
 		}),
-		formatting.htmlbeautifier,
 		formatting.gofumpt,
 		formatting.goimports,
     code_actions.impl,

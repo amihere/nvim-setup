@@ -50,8 +50,6 @@ mason_null_ls.setup({
 		"stylua",
 		-- C
 		"clang_format",
-		-- Frontend
-		"htmlbeautifier",
 		"ruff",
 		"prettier",
 		"eslint_d",
