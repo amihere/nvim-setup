@@ -52,11 +52,13 @@ _gitsigns.setup({
 			gitsigns.blame_line({ full = true })
 		end, { desc = "blame line (full)" })
 
-		map("n", "<leader>hd", gitsigns.diffthis, { desc = "diff" })
+		map("n", "<leader>hdd", gitsigns.diffthis, { desc = "diff against index" })
+		map("n", "<leader>hdb", ":Gitsigns change_base ", { desc = "change base to another branch/commit" })
+		map("n", "<leader>hdr", gitsigns.reset_base, { desc = "reset base" })
 
-		map("n", "<leader>hD", function()
+		map("n", "<leader>hdD", function()
 			gitsigns.diffthis("~")
-		end, { desc = "diff with ~" })
+		end, { desc = "diff against last commit" })
 
 		map("n", "<leader>hQ", function()
 			gitsigns.setqflist("all")
