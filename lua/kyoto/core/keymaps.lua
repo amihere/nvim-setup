@@ -39,6 +39,11 @@ keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>") -- show colors
 keymap.set("n", "<leader>fC", "<cmd>Telescope commands<cr>") -- opens command list
 keymap.set("n", "<leader>fv", "<cmd>Oil<cr>", { desc = "Open File Tree" })
 keymap.set("n", "<leader>fn", vim.lsp.buf.format, { desc = "Format file" })
+keymap.set("n", "<leader>fx", function()
+	require("telescope.builtin").find_files({
+		cwd = vim.fn.stdpath("config"),
+	})
+end, { desc = "view files in nvim config" })
 
 keymap.set(
 	"n",
