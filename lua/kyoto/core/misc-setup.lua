@@ -15,6 +15,23 @@ autocmd("TextYankPost", {
 	end,
 })
 
+// Allow C-x, C-f to start from current folder
+autocmd("InsertEnter", {
+	group = kyotoGroup,
+	pattern = "*",
+	callback = function()
+		vim.cmd("let save_cwd = getcwd() | set autochdir")
+	end,
+})
+
+autocmd("InsertLeave", {
+	group = kyotoGroup,
+	pattern = "*",
+	callback = function()
+		vim.cmd("set noautochdir | execute 'cd' fnameescape(save_cwd)")
+	end,
+})
+
 autocmd({ "BufWritePre" }, {
 	group = kyotoGroup,
 	pattern = "*",
