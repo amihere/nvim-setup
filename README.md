@@ -42,6 +42,8 @@ https://github.com/ThePrimeagen/.dotfiles
 Matthias  
 https://github.com/mfussenegger  
 
+https://github.com/tushortz/vscode-Java-Snippets/tree/master  
+
 ## full deps for linux (eg. ubuntu)
 ```
 sudo apt update
