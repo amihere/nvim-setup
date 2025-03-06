@@ -16,6 +16,10 @@ require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./xtra_snippets" }
 vim.opt.completeopt = "menu,menuone,noselect"
 
 cmp.setup({
+	experimental = {
+		native_menu = false,
+		ghost_text = true,
+	},
 	snippet = {
 		expand = function(args)
 			ls.lsp_expand(args.body)
@@ -69,9 +73,9 @@ cmp.setup({
 
 	-- sources for autocompletion
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" }, -- lsp
 		{ name = "luasnip" }, -- snippets
-		{ name = "buffer" }, -- text within current buffer
-		{ name = "path" }, -- file system paths
+		{ name = "nvim_lsp" }, -- lsp
+		{ name = "buffer", keyword_length = 5 }, -- text within current buffer
+		{ name = "path", keyword_length = 5 }, -- file system paths
 	}),
 })
