@@ -106,6 +106,14 @@ return packer.startup(function(use)
 	use({ "folke/twilight.nvim" })
 	use({ "amihere/wizardry" })
 	use({ "stevearc/oil.nvim" })
+	use({
+		"MeanderingProgrammer/render-markdown.nvim",
+		after = { "nvim-treesitter" },
+		requires = { "echasnovski/mini.icons", opt = true }, -- if you use standalone mini plugins
+		config = function()
+			require("render-markdown").setup({})
+		end,
+	})
 
 	use({ "benfowler/telescope-luasnip.nvim" })
 
