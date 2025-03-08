@@ -1,6 +1,14 @@
-local dap = require("dap")
+local dap, dapui = require("dap"), require("dapui")
 
 require("nvim-dap-virtual-text").setup()
+dapui.setup()
+
+dap.listeners.before.attach.dapui_config = function()
+	dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+	dapui.open()
+end
 
 -- Debugger Keymaps
 vim.api.nvim_set_keymap("n", "<leader>dt", ":DapTerminate<CR>", { desc = "Terminate", noremap = true })
@@ -16,3 +24,4 @@ vim.api.nvim_set_keymap(
 	":DapVirtualTextToggle<CR>",
 	{ desc = "Toggle Virtual Text", noremap = true }
 )
+vim.keymap.set({ "n" }, "<leader>dx", dapui.close, { desc = "Exit dapui" })
