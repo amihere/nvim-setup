@@ -95,6 +95,7 @@ return packer.startup(function(use)
 	-- java debugging
 	use({ "mfussenegger/nvim-dap" })
 	use("theHamsta/nvim-dap-virtual-text")
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
 	use("mfussenegger/nvim-jdtls")
 
 	use({ "nvim-telescope/telescope-ui-select.nvim" })
