@@ -36,21 +36,22 @@ vim.list_extend(
 
 local config = {
 	cmd = {
-		vim.fn.expand("/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home/bin/java"), -- or '/path/to/java17_or_newer/bin/java'
-
+		"java", -- or '/path/to/java17_or_newer/bin/java'
+		-- vim.fn.expand("/home/linuxbrew/.linuxbrew/Cellar/openjdk/21.0.3/bin/java"), -- or '/path/to/java17_or_newer/bin/java'
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
 		"-Dlog.protocol=true",
 		"-Dlog.level=ALL",
-		"-Xmx256m",
+		"-javaagent:" .. lombok_path,
+		"-Xmx1g",
 		"--add-modules=ALL-SYSTEM",
 		"--add-opens",
 		"java.base/java.util=ALL-UNNAMED",
 		"--add-opens",
 		"java.base/java.lang=ALL-UNNAMED",
 
-		"-javaagent:" .. lombok_path,
+		-- "-javaagent:" .. lombok_path,
 
 		"-jar",
 		equinox_launcher_path,
@@ -77,20 +78,31 @@ local config = {
 	settings = {
 		java = {
 			server = { launchMode = "Hybrid" },
+			extendedClientCapabilities = extendedClientCapabilities,
 			eclipse = {
 				downloadSources = true,
+			},
+			format = {
+				enabled = false,
+				settings = {
+					url = "~/.local/share/eclipse/eclipse-java-google-style.xml",
+					profile = "GoogleStyle",
+				},
+			},
+			gradle = {
+				enabled = true,
 			},
 			maven = {
 				downloadSources = true,
 			},
-			configuration = {
-				runtimes = {
-					{
-						name = "JavaSE-21",
-						path = "/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home",
-					},
-				},
-			},
+			-- configuration = {
+			-- 	runtimes = {
+			-- 		{
+			-- 			name = "JavaSE-17",
+			-- 			path = "/home/linuxbrew/.linuxbrew/Cellar/openjdk@17/17.0.11",
+			-- 		},
+			-- 	},
+			-- },
 			references = {
 				includeDecompiledSources = true,
 			},
@@ -110,6 +122,37 @@ local config = {
 				description = {
 					enabled = true,
 				},
+			},
+			contentProvider = { preferred = "fernflower" }, -- Use fernflower to decompile library code
+
+			-- Specify any completion options
+			completion = {
+				favoriteStaticMembers = {
+					"org.hamcrest.MatcherAssert.assertThat",
+					"org.hamcrest.Matchers.*",
+					"org.hamcrest.CoreMatchers.*",
+					"org.junit.jupiter.api.Assertions.*",
+					"java.util.Objects.requireNonNull",
+					"java.util.Objects.requireNonNullElse",
+					"org.mockito.Mockito.*",
+				},
+				filteredTypes = {
+					"com.sun.*",
+					"io.micrometer.shaded.*",
+					"java.awt.*",
+					"jdk.*",
+					"sun.*",
+				},
+			},
+			-- How code generation should act
+			codeGeneration = {
+				toString = {
+					template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+				},
+				hashCodeEquals = {
+					useJava7Objects = true,
+				},
+				useBlocks = true,
 			},
 			sources = {
 				organizeImports = {
@@ -145,16 +188,17 @@ local function register_keybindings()
 		{ "<leader>J", group = "Java", nowait = true, remap = false },
 		{
 			"<leader>JC",
-			"<Cmd>lua require('jdtls').extract_constant()<CR>",
+			jdtls.extract_constant,
 			desc = "Extract Constant",
 			nowait = true,
 			remap = false,
 		},
-		{ "<leader>JT", "<Cmd>lua require'jdtls'.test_class()<CR>", desc = "Test Class", nowait = true, remap = false },
+		{ "<leader>Jp", jdtls.pick_test, desc = "Pick Test", nowait = true, remap = false },
+		{ "<leader>JT", jdtls.test_class, desc = "Test Class", nowait = true, remap = false },
 		{ "<leader>Jc", "<Cmd>JdtCompile<CR>", desc = "Compile Java Code", nowait = true, remap = false },
 		{
 			"<leader>Jo",
-			"<Cmd>lua require'jdtls'.organize_imports()<CR>",
+			jdtls.organize_imports,
 			desc = "Organize Imports",
 			nowait = true,
 			remap = false,
@@ -168,14 +212,14 @@ local function register_keybindings()
 		},
 		{
 			"<leader>Jt",
-			"<Cmd>lua require'jdtls'.test_nearest_method()<CR>",
+			jdtls.test_nearest_method,
 			desc = "Test Method",
 			nowait = true,
 			remap = false,
 		},
 		{
 			"<leader>Jv",
-			"<Cmd>lua require('jdtls').extract_variable()<CR>",
+			jdtls.extract_variable,
 			desc = "Extract Variable",
 			nowait = true,
 			remap = false,
@@ -188,7 +232,7 @@ local function register_keybindings()
 			{ "<leader>J", group = "Java", nowait = true, remap = false },
 			{
 				"<leader>Jc",
-				"<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>",
+				jdtls.extract_constant,
 				desc = "Extract Constant",
 				nowait = true,
 				remap = false,
@@ -216,7 +260,6 @@ end
 
 config["on_attach"] = function(client, bufnr)
 	local _, _ = pcall(vim.lsp.codelens.refresh)
-
 	require("jdtls").setup_dap({ hotcodereplace = "auto" })
 	require("kyoto.plugins.lsp.keybinds").on_attach(client, bufnr)
 	local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
@@ -224,6 +267,8 @@ config["on_attach"] = function(client, bufnr)
 		jdtls_dap.setup_dap_main_class_configs()
 	end
 
+	vim.o.tabstop = 4
+	vim.o.shiftwidth = 0
 	register_keybindings()
 end
 
