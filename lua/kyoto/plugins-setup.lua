@@ -118,6 +118,7 @@ return packer.startup(function(use)
 			vim.o.timeout = true
 			vim.o.timeoutlen = 200
 			require("which-key").setup({
+				delay = 1500,
 				icons = {
 					mappings = false,
 				},
