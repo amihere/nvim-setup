@@ -24,4 +24,10 @@ vim.api.nvim_set_keymap(
 	":DapVirtualTextToggle<CR>",
 	{ desc = "Toggle Virtual Text", noremap = true }
 )
-vim.keymap.set({ "n" }, "<leader>dx", dapui.close, { desc = "Exit dapui" })
+
+vim.keymap.set("n", "<leader>df", function()
+	dapui.eval(nil, { enter = true })
+end, { desc = "Eval var under cursor", noremap = true })
+
+vim.keymap.set({ "n" }, "<leader>dx", dapui.toggle, { desc = "Toggle dapui" })
+
