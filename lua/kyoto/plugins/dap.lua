@@ -1,7 +1,23 @@
 local dap, dapui = require("dap"), require("dapui")
 
 require("nvim-dap-virtual-text").setup()
-dapui.setup()
+dapui.setup({
+	controls = {
+		element = "repl",
+		enabled = false,
+		icons = {
+			disconnect = " ",
+			pause = " ",
+			play = " ",
+			run_last = " ",
+			step_back = " ",
+			step_into = " ",
+			step_out = " ",
+			step_over = " ",
+			terminate = " ",
+		},
+	},
+})
 
 dap.listeners.before.attach.dapui_config = function()
 	dapui.open()
@@ -9,6 +25,10 @@ end
 dap.listeners.before.launch.dapui_config = function()
 	dapui.open()
 end
+
+vim.api.nvim_set_hl(0, "DapStoppedHl", { fg = "#98BB6C", bg = "#2A2A2A", bold = true })
+vim.api.nvim_set_hl(0, "DapStoppedLineHl", { bg = "#79f799", bold = true })
+vim.fn.sign_define("DapBreakpoint", { text = "B", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 
 -- Debugger Keymaps
 vim.api.nvim_set_keymap("n", "<leader>dt", ":DapTerminate<CR>", { desc = "Terminate", noremap = true })
