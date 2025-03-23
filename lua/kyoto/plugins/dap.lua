@@ -1,7 +1,23 @@
 local dap, dapui = require("dap"), require("dapui")
 
 require("nvim-dap-virtual-text").setup()
-dapui.setup()
+dapui.setup({
+	controls = {
+		element = "repl",
+		enabled = false,
+		icons = {
+			disconnect = " ",
+			pause = " ",
+			play = " ",
+			run_last = " ",
+			step_back = " ",
+			step_into = " ",
+			step_out = " ",
+			step_over = " ",
+			terminate = " ",
+		},
+	},
+})
 
 dap.listeners.before.attach.dapui_config = function()
 	dapui.open()
