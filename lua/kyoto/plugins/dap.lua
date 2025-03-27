@@ -1,23 +1,45 @@
 local dap, dapui = require("dap"), require("dapui")
 
 require("nvim-dap-virtual-text").setup()
+
 dapui.setup({
 	controls = {
 		element = "repl",
 		enabled = false,
-		icons = {
-			disconnect = " ",
-			pause = " ",
-			play = " ",
-			run_last = " ",
-			step_back = " ",
-			step_into = " ",
-			step_out = " ",
-			step_over = " ",
-			terminate = " ",
+	},
+	layouts = {
+		{
+			elements = {
+				{
+					id = "watches",
+					size = 0.25,
+				},
+				{
+					id = "breakpoints",
+					size = 0.25,
+				},
+				{
+					id = "scopes",
+					size = 0.25,
+				},
+				{
+					id = "stacks",
+					size = 0.25,
+				},
+			},
+			size = 60,
+			position = "left", -- Can be "left" or "right"
+		},
+		{
+			elements = {
+				"console",
+			},
+			size = 12,
+			position = "bottom", -- Can be "bottom" or "top"
 		},
 	},
 })
+
 
 dap.listeners.before.attach.dapui_config = function()
 	dapui.open()
@@ -27,9 +49,11 @@ dap.listeners.before.launch.dapui_config = function()
 end
 
 -- Highlight debugger symbols
-vim.api.nvim_set_hl(0, "DapStoppedHl", { fg = "#98BB6C", bg = "#2A2A2A", bold = true })
-vim.api.nvim_set_hl(0, "DapStoppedLineHl", { bg = "#79f799", bold = true })
+vim.fn.sign_define("DapStopped", { text = "→", texthl = "DapStopped", linehl = "DapStoppedLineHl" })
+vim.api.nvim_set_hl(0, "DapStopped", { fg = "#00FF00", bg = "#444444", blend = 15 })
+vim.api.nvim_set_hl(0, "DapStoppedLineHl", { bg = "#2a4f66", bold = true })
 vim.fn.sign_define("DapBreakpoint", { text = "B", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
+
 
 -- Debugger Keymaps
 vim.api.nvim_set_keymap("n", "<leader>dt", ":DapTerminate<CR>", { desc = "Terminate", noremap = true })
@@ -45,7 +69,12 @@ vim.api.nvim_set_keymap(
 	":DapVirtualTextToggle<CR>",
 	{ desc = "Toggle Virtual Text", noremap = true }
 )
-
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>d.",
+	":lua require('dap').run_to_cursor()<CR>",
+	{ desc = "Run to cursor location", noremap = true }
+)
 vim.keymap.set("n", "<leader>df", function()
 	dapui.eval(nil, { enter = true })
 end, { desc = "Eval var under cursor", noremap = true })
