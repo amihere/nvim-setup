@@ -17,6 +17,11 @@ telescope.setup({
 			require("telescope.themes").get_dropdown({}),
 		},
 	},
+	pickers = {
+		find_files = {
+			theme = "ivy",
+		},
+	},
 
 	-- configure custom mappings
 	defaults = {
