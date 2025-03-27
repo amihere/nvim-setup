@@ -35,12 +35,12 @@ function M.on_attach(client, bufnr)
 	keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
 	opts.desc = "toggle inlay hints"
-	keymap.set("n", "<leader>hi", function()
+	keymap.set("n", "<leader>ri", function()
 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 	end, opts) -- toggle inlay hints
 	opts.desc = "Ask for signature help"
 
-	keymap.set("n", "<leader>hs", function()
+	keymap.set("n", "<leader>rh", function()
 		vim.lsp.buf.signature_help()
 		vim.lsp.buf.signature_help()
 	end, opts)
