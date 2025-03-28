@@ -102,7 +102,6 @@ _gitsigns.setup({
 		local function review_pr(branch_name)
 			local gs = require("gitsigns")
 			gs.change_base(branch_name, true, function()
-				gs.blame()
 				gs.setqflist("all", nil)
 				print("Opening all hunks from branch: " .. branch_name)
 			end)
