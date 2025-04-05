@@ -9,7 +9,14 @@ treesitter.setup({
 	-- enable syntax highlighting
 	highlight = {
 		enable = true,
-		disable = {},
+		disable = function(_, buf)
+			local max_filesize = 100 * 1024 -- 100 KB
+			---@diagnostic disable-next-line: undefined-field
+			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+			if ok and stats and stats.size > max_filesize then
+				return true
+			end
+		end,
 	},
 	-- enable indentation
 	indent = { enable = true },
@@ -37,6 +44,15 @@ treesitter.setup({
 		"vimdoc",
 	},
 
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "<Enter>",
+			scope_incremental = false,
+			node_incremental = "<Enter>",
+			node_decremental = "<Backspace>",
+		},
+	},
 	sync_install = false,
 	-- auto install above language parsers
 	auto_install = true,
