@@ -44,7 +44,7 @@ opt.hlsearch = false
 opt.scrolloff = 8
 
 -- TJ
-opt.list = true
+opt.list = false
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Folds
@@ -54,3 +54,5 @@ opt.foldtext = ""
 opt.foldlevelstart = 1
 opt.foldnestmax = 2
 opt.fml = 3
+
+opt.showmode = false
