@@ -44,6 +44,16 @@ keymap.set("n", "<leader>fx", function()
 		cwd = vim.fn.stdpath("config"),
 	})
 end, { desc = "view files in nvim config" })
+keymap.set("n", "<leader>fss", function()
+	require("telescope.builtin").find_files({
+		cwd = vim.fn.stdpath("data"),
+	})
+end, { desc = "find file in nvim source" })
+keymap.set("n", "<leader>fsg", function()
+	require("telescope.builtin").live_grep({
+		cwd = vim.fn.stdpath("data"),
+	})
+end, { desc = "grep nvim source" })
 
 keymap.set(
 	"n",
