@@ -15,6 +15,7 @@ autocmd("TextYankPost", {
 	end,
 })
 
+-- remove trailing whitespace 
 autocmd({ "BufWritePre" }, {
 	group = kyotoGroup,
 	pattern = "*",
