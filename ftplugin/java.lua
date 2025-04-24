@@ -84,10 +84,6 @@ local config = {
 			},
 			format = {
 				enabled = false,
-				settings = {
-					url = "~/.local/share/eclipse/eclipse-java-google-style.xml",
-					profile = "GoogleStyle",
-				},
 			},
 			gradle = {
 				enabled = true,

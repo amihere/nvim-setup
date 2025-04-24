@@ -21,16 +21,16 @@ null_ls.setup({
 		formatting.stylua, -- lua formatter
 		formatting.mix,
 		formatting.ruff,
-		formatting.astyle,
-		formatting.clang_format,
+		formatting.clang_format.with({ disabled_filetypes = { "java" } }),
+		formatting.google_java_format,
 		formatting.prettier.with({
 			extra_filetypes = { "svelte" },
 		}),
 		formatting.gofumpt,
 		formatting.goimports,
-    code_actions.impl,
-    code_actions.gomodifytags,
-    diagnostics.golangci_lint,
+		code_actions.impl,
+		code_actions.gomodifytags,
+		diagnostics.golangci_lint,
 		diagnostics.revive,
 		diagnostics.eslint_d.with({
 			condition = function(utils)
