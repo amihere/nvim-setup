@@ -263,8 +263,6 @@ config["on_attach"] = function(client, bufnr)
 		jdtls_dap.setup_dap_main_class_configs()
 	end
 
-	vim.o.tabstop = 4
-	vim.o.shiftwidth = 0
 	register_keybindings()
 end
 
