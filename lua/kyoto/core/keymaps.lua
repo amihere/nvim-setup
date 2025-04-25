@@ -33,7 +33,7 @@ keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>") -- find string in 
 keymap.set("n", "<leader>fG", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
-keymap.set("n", "<leader>fF", "<cmd>Telescope git_files<cr>") -- git file search
+keymap.set("n", "<leader>fF", "<cmd>silent! Telescope git_files<cr>") -- git file search
 keymap.set("n", "<leader>fs", "<cmd>Telescope luasnip<cr>") -- open snippets for lang
 keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>") -- show colors
 keymap.set("n", "<leader>fC", "<cmd>Telescope commands<cr>") -- opens command list
@@ -179,4 +179,3 @@ keymap.set("n", "<leader>ts", function()
 	vim.api.nvim_win_set_height(0, 5)
 	vim.cmd.startinsert()
 end, { silent = true, desc = "Open a smaller terminal" })
-
