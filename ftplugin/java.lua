@@ -1,17 +1,8 @@
-local mason = require("mason-registry")
-local jdtls_path = mason.get_package("jdtls"):get_install_path()
+local equinox_launcher_path = vim.fn.glob("$MASON/share/jdtls/plugins/org.eclipse.equinox.launcher_*.jar")
 
-local equinox_launcher_path = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
+local config_path = vim.fn.glob("$MASON/share/jdtls/config")
 
-local system = "linux"
-if vim.fn.has("win32") then
-	system = "win"
-elseif vim.fn.has("mac") then
-	system = "mac"
-end
-local config_path = vim.fn.glob(jdtls_path .. "/config_" .. system)
-
-local lombok_path = jdtls_path .. "/lombok.jar"
+local lombok_path = vim.fn.glob("$MASON/share/jdtls/lombok.jar")
 
 local jdtls = require("jdtls")
 
@@ -19,19 +10,11 @@ local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 local bundles = {}
+vim.list_extend(bundles, vim.fn.globpath("$MASON/share/java-test", "*.jar", true, true))
+
 vim.list_extend(
 	bundles,
-	vim.split(vim.fn.glob(mason.get_package("java-test"):get_install_path() .. "/extension/server/*.jar"), "\n")
-)
-vim.list_extend(
-	bundles,
-	vim.split(
-		vim.fn.glob(
-			mason.get_package("java-debug-adapter"):get_install_path()
-				.. "/extension/server/com.microsoft.java.debug.plugin-*.jar"
-		),
-		"\n"
-	)
+	vim.fn.globpath("$MASON/share/java-debug-adapter", "com.microsoft.java.debug.plugin-*.jar", true, true)
 )
 
 local config = {
