@@ -69,6 +69,11 @@ lspconfig.biome.setup({
 	},
 })
 
+lspconfig.lemminx.setup({
+	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
+	capabilities = capabilities,
+})
+
 -- configure css server
 lspconfig["cssls"].setup({
 	capabilities = capabilities,
