@@ -20,7 +20,6 @@ null_ls.setup({
 		--  "formatting.prettier.with({disabled_filetypes = {}})" (see null-ls docs)
 		formatting.stylua, -- lua formatter
 		formatting.mix,
-		formatting.ruff,
 		formatting.clang_format.with({ disabled_filetypes = { "java" } }),
 		formatting.prettier.with({
 			extra_filetypes = { "svelte" },

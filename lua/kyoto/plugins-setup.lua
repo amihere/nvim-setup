@@ -33,7 +33,7 @@ return packer.startup(function(use)
 
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
-	use({"rose-pine/neovim", as = "rose-pine"})
+	use({ "rose-pine/neovim", as = "rose-pine" })
 	use({ "nyoom-engineering/oxocarbon.nvim" })
 
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
@@ -50,7 +50,6 @@ return packer.startup(function(use)
 	-- fuzzy finding w/ telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { { "nvim-lua/plenary.nvim" } } }) -- fuzzy finder
-
 
 	-- autocompletion
 	use("hrsh7th/nvim-cmp") -- completion plugin
@@ -74,13 +73,12 @@ return packer.startup(function(use)
 	use("nvimtools/none-ls.nvim") -- configure formatters & linters
 	use({
 		"jay-babu/mason-null-ls.nvim",
-	      	event = { "BufReadPre", "BufNewFile" },
-	      	dependencies = {
-	        	"williamboman/mason.nvim",
-	        	"nvimtools/none-ls.nvim",
-	      	},
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"williamboman/mason.nvim",
+			"nvimtools/none-ls.nvim",
+		},
 	})
-
 
 	-- treesitter configuration
 	use({
