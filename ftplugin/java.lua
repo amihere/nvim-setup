@@ -83,7 +83,11 @@ local config = {
 				downloadSources = true,
 			},
 			format = {
-				enabled = false,
+				enabled = true,
+				settings = {
+					url = vim.fn.stdpath("config") .. "formatter/eclipse.xml",
+					profile = "GoogleStyle",
+				},
 			},
 			gradle = {
 				enabled = true,
@@ -270,6 +274,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = { "*.java" },
 	callback = function()
 		local _, _ = pcall(vim.lsp.codelens.refresh)
+		vim.lsp.buf.format()
 	end,
 })
 

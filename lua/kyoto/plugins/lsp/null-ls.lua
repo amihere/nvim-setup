@@ -22,7 +22,6 @@ null_ls.setup({
 		formatting.mix,
 		formatting.ruff,
 		formatting.clang_format.with({ disabled_filetypes = { "java" } }),
-		formatting.google_java_format,
 		formatting.prettier.with({
 			extra_filetypes = { "svelte" },
 		}),
@@ -30,13 +29,9 @@ null_ls.setup({
 		formatting.goimports,
 		code_actions.impl,
 		code_actions.gomodifytags,
+		formatting.sqlfmt,
 		diagnostics.golangci_lint,
 		diagnostics.revive,
-		diagnostics.eslint_d.with({
-			condition = function(utils)
-				return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
-			end,
-		}),
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)
