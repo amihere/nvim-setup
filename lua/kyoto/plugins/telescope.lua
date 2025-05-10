@@ -19,17 +19,41 @@ telescope.setup({
 	},
 	pickers = {
 		find_files = {
+			theme = "dropdown",
+			previewer = false,
+		},
+		git_files = {
+			theme = "dropdown",
+			previewer = false,
+		},
+		buffers = {
+			theme = "ivy",
+			initial_mode = "normal",
+		},
+		grep_string = {
+			theme = "ivy",
+		},
+		help_tags = {
+			theme = "ivy",
+		},
+		colorscheme = {
+			theme = "dropdown",
+			previewer = "false",
+		},
+		live_grep = {
 			theme = "ivy",
 		},
 	},
 
 	-- configure custom mappings
 	defaults = {
+		file_ignore_patterns = { "node_modules", "build/" },
 		mappings = {
 			n = {
-				['<c-d>'] = require('telescope.actions').delete_buffer
+				["d"] = require("telescope.actions").delete_buffer,
 			},
 			i = {
+				["<c-d>"] = require("telescope.actions").delete_buffer,
 				["<C-k>"] = actions.move_selection_previous, -- move to prev result
 				["<C-j>"] = actions.move_selection_next, -- move to next result
 				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist, -- send selected to quickfixlist
@@ -44,4 +68,3 @@ telescope.load_extension("fzf")
 telescope.load_extension("harpoon")
 telescope.load_extension("git_worktree")
 telescope.load_extension("luasnip")
-
