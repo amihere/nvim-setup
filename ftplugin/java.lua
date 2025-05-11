@@ -68,7 +68,7 @@ local config = {
 			format = {
 				enabled = true,
 				settings = {
-					url = vim.fn.stdpath("config") .. "formatter/eclipse.xml",
+					url = vim.fn.stdpath("config") .. "/formatter/eclipse.xml",
 					profile = "GoogleStyle",
 				},
 			},
@@ -241,6 +241,8 @@ local function register_keybindings()
 	which_key.add(vmappings)
 end
 
+local augroup = vim.api.nvim_create_augroup("JavaCodeFormatting", {})
+
 config["on_attach"] = function(client, bufnr)
 	local _, _ = pcall(vim.lsp.codelens.refresh)
 	require("jdtls").setup_dap({ hotcodereplace = "auto" })
@@ -257,9 +259,21 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = { "*.java" },
 	callback = function()
 		local _, _ = pcall(vim.lsp.codelens.refresh)
-		vim.lsp.buf.format()
 	end,
 })
+
+local function format_on_save()
+	vim.api.nvim_clear_autocmds({ group = augroup })
+	vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+		pattern = { "*.java" },
+		group = augroup,
+		callback = function()
+			vim.lsp.buf.format()
+		end,
+	})
+end
+
+format_on_save()
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
