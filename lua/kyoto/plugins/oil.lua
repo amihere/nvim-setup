@@ -7,6 +7,8 @@ require("oil").setup({
 		end,
 	},
 	keymaps = {
+		["<C-h>"] = false,
+		["<C-l>"] = false,
 		["gd"] = {
 			desc = "Toggle file detail view",
 			callback = function()
