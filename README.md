@@ -15,10 +15,14 @@ Install by double clicking and install, then configure iTerm to use in **Prefere
 ```brew install go```
 
 #### tmux 
-Run ```brew install tmux```
-Create files ```~/.tmux.conf``` and ```~/.local/bin/tmux-sessionizer```. See other_files.md
-Include TPM (TMUX plugin manager) by running: `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`  
-Make tmux-sessionizer executable by using ```chmod u+x```
+Install tmux by running ```brew install tmux```  
+
+From HOME directory, do:  
+- Create files ```~/.tmux.conf``` and ```~/.local/bin/tmux-sessionizer```. Copy contents from tmux folder
+- Include TPM (TMUX plugin manager) by running: `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`  
+- Make tmux-sessionizer executable by using ```chmod u+x```
+- Run `tmux source ~/.tmux.conf`
+- Or, launch tmux and use `PREFIX` + `I`
 
 #### create a .zshrc.local in your ~ folder, if zsh is your shell. Use .bashrc if needed
 ```bindkey -s "^f" "~/.local/bin/tmux-sessionizer^M"```
