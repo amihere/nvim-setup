@@ -36,10 +36,6 @@ telescope.setup({
 		help_tags = {
 			theme = "ivy",
 		},
-		colorscheme = {
-			theme = "dropdown",
-			previewer = "false",
-		},
 		live_grep = {
 			theme = "ivy",
 		},
