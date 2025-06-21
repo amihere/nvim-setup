@@ -1,5 +1,6 @@
 # nvim-setup
-neovim dotfiles. Supports: Go, Java, Elixir, Svelte, Python
+neovim dotfiles.  
+Supports: My five: Go, Java, Elixir, Svelte, Python. Lua is default for neovim configuration.
 
 ## some extra steps needed
 
@@ -9,7 +10,6 @@ Install by double clicking and install, then configure iTerm to use in **Prefere
 (only if icons don't show) Go to cheat sheet here: https://www.nerdfonts.com/cheat-sheet. Copy icons and replace in lua plugin files.
 
 #### search & regex 
-
 + Homebrew  
 ```brew install fd ripgrep fzf make```
 ```brew install go```
@@ -33,7 +33,7 @@ At the beginning packer (plugin manager) was acting funny. Use this command in t
 
 ## environment
 
-Macbook Pro, OS: Monterrey. Homebrew, iTerm2
+Macbook Pro, OS: Monterrey. Homebrew, iTerm2/Alacritty/Ghostyy
 
 ## credit
 
