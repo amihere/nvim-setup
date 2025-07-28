@@ -22,7 +22,7 @@ maven
 mprocs
 neofetch
 neovim
-pcre++
+pcre
 python@3.9
 ripgrep
 spring-io/tap/spring-boot
