@@ -31,7 +31,7 @@ let cterm_white = 231 " white
 
 highlight clear
 syntax reset
-let g:colors_name = "noirblaze"
+let g:colors_name = "kyoto"
 
 exec "hi Normal ctermfg=".cterm_gray_400." ctermbg=".cterm_gray_900
 exec "hi Normal guifg=".gray_400." guibg=".gray_900
