@@ -29,6 +29,8 @@ telescope.setup({
 		buffers = {
 			theme = "ivy",
 			initial_mode = "normal",
+			sort_mru = true,
+			ignore_current_buffer = true,
 		},
 		grep_string = {
 			theme = "ivy",
