@@ -1,9 +1,3 @@
--- import lspconfig plugin safely
-local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status then
-	return
-end
-
 -- import cmp-nvim-lsp plugin safely
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
@@ -19,33 +13,74 @@ local capabilities =
 
 -- Change the Diagnostic symbols in the sign column (gutter)
 local signs = { Error = " ", Warn = " ", Hint = "󱐋", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
 
--- configure lua server (with special settings)
-lspconfig["lua_ls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	settings = { -- custom settings for lua
-		Lua = {
-			-- make the language server recognize "vim" global
-			diagnostics = {
-				globals = { "vim" },
+vim.diagnostic.config({
+	signs = {
+		[vim.diagnostic.severity.ERROR] = signs.Error,
+		[vim.diagnostic.severity.WARN] = signs.Warn,
+		[vim.diagnostic.severity.HINT] = signs.Hint,
+		[vim.diagnostic.severity.INFO] = signs.Info,
+	},
+})
+
+vim.lsp.config("lua_ls", {
+	on_init = function(client)
+		if client.workspace_folders then
+			local path = client.workspace_folders[1].name
+			if
+				path ~= vim.fn.stdpath("config")
+				and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+			then
+				return
+			end
+		end
+
+		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most
+				-- likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+				-- Tell the language server how to find Lua modules same way as Neovim
+				-- (see `:h lua-module-load`)
+				path = {
+					"lua/?.lua",
+					"lua/?/init.lua",
+				},
 			},
+			-- Make the server aware of Neovim runtime files
 			workspace = {
-				-- make language server aware of runtime files
+				checkThirdParty = false,
 				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
+					vim.env.VIMRUNTIME,
+				},
+			},
+		})
+	end,
+	on_attach = on_attach,
+	settings = {
+		Lua = {},
+	},
+})
+
+vim.lsp.config("pylsp", {
+	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = {
+					ignore = { "W391" },
+					maxLineLength = 100,
 				},
 			},
 		},
 	},
 })
 
-lspconfig.pylsp.setup({
+vim.lsp.config("gopls", {
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
 	flags = {
@@ -53,7 +88,7 @@ lspconfig.pylsp.setup({
 	},
 })
 
-lspconfig.gopls.setup({
+vim.lsp.config("biome", {
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
 	flags = {
@@ -61,34 +96,26 @@ lspconfig.gopls.setup({
 	},
 })
 
-lspconfig.biome.setup({
-	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
-	capabilities = capabilities,
-	flags = {
-		debounce_text_changes = 150,
-	},
-})
-
-lspconfig.lemminx.setup({
+vim.lsp.config("lemminx", {
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
 })
 
 -- configure css server
-lspconfig["cssls"].setup({
+vim.lsp.config("cssls", {
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
 
 -- configure tailwindcss server
-lspconfig["tailwindcss"].setup({
+vim.lsp.config("tailwindcss", {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	filetypes = { "typescript", "javascript", "svelte", "html", "css" },
 })
 
 -- configure svelte server
-lspconfig["svelte"].setup({
+vim.lsp.config("svelte", {
 	capabilities = capabilities,
 	filetypes = { "typescript", "javascript", "svelte", "html", "css" },
 	on_attach = function(client, bufnr)
@@ -105,7 +132,7 @@ lspconfig["svelte"].setup({
 
 local capable = vim.lsp.protocol.make_client_capabilities()
 capable.textDocument.completion.completionItem.snippetSupport = true
-lspconfig.html.setup({
+vim.lsp.config("html", {
 	capabilities = capable,
 	flags = {
 		debounce_text_changes = 150,
@@ -113,7 +140,7 @@ lspconfig.html.setup({
 })
 
 -- Configure ElixirLS as the LSP server for Elixir.
-lspconfig.elixirls.setup({
+vim.lsp.config("elixirls", {
 	cmd = { "/usr/local/opt/elixir-ls/libexec/language_server.sh" },
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
