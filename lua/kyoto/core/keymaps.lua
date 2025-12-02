@@ -164,6 +164,8 @@ keymap.set("n", "<leader>ll", "<cmd>Twilight<cr>") -- toggle the twilight option
 keymap.set("n", "<leader>ln", "<cmd>set rnu!<cr>")
 
 -- open a terminal
+keymap.set("t", "<C-k>", "<C-\\><C-n><Cmd>TmuxNavigateUp<cr>", { silent = true, desc = "Go up in terminal" })
+keymap.set("t", "<C-j>", "<C-\\><C-n><Cmd>TmuxNavigateDown<cr>", { silent = true, desc = "Go down in terminal" })
 keymap.set("t", "<ESC>", "<C-\\><C-n>", { silent = true, desc = "Escape terminal mode" })
 keymap.set("n", "<leader>tt", function()
 	vim.cmd.vnew()
