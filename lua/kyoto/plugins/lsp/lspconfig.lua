@@ -26,6 +26,16 @@ vim.diagnostic.config({
 })
 
 vim.lsp.config("lua_ls", {
+	cmd = { "lua-language-server" },
+	filetypes = { "lua" },
+	root_markers = {
+		".git",
+		".luarc.json",
+		".luarc.jsonc",
+		".luacheckrc",
+		"stylua.toml",
+		".stylua.toml",
+	},
 	on_init = function(client)
 		if client.workspace_folders then
 			local path = client.workspace_folders[1].name
@@ -116,13 +126,18 @@ vim.lsp.config("tailwindcss", {
 	filetypes = { "typescript", "javascript", "svelte", "html", "css" },
 })
 
-vim.lsp.enable("ts_ls")
+vim.lsp.config("ts_ls", {
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
 -- configure svelte server
 vim.lsp.config("svelte", {
 	capabilities = capabilities,
 	filetypes = { "svelte" },
 	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+
 		vim.api.nvim_create_autocmd("BufWritePost", {
 			pattern = { "*.js", "*.ts" },
 			group = vim.api.nvim_create_augroup("lspconfig.svelte", {}),

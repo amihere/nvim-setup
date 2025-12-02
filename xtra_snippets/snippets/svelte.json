@@ -1,0 +1,28 @@
+{
+  "Svelte Component": {
+    "prefix": "comp",
+    "body": [
+      "<script>",
+      "  export let name = '$1';",
+      "</script>",
+      "",
+      "<h1>Hello {name}!</h1>",
+      "",
+      "<style>",
+      "  /* $2 */",
+      "</style>",
+      "$0"
+    ],
+    "description": "Basic Svelte component structure"
+  },
+  "If Block": {
+    "prefix": "if",
+    "body": ["{#if $1}", "  $2", "{/if}$0"],
+    "description": "Svelte {#if} block"
+  },
+  "Each Block": {
+    "prefix": "each",
+    "body": ["{#each $1 as $2}", "  $3", "{/each}$0"],
+    "description": "Svelte {#each} block"
+  }
+}
