@@ -11,8 +11,9 @@ Install by double clicking and install, then configure iTerm to use in **Prefere
 
 #### search & regex 
 + Homebrew  
-```brew install fd ripgrep fzf make```
+```brew install fd ripgrep fzf make```  
 ```brew install go```
+```brew install nvim```
 
 #### tmux 
 Install tmux by running ```brew install tmux```  
