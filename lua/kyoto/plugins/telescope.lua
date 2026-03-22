@@ -11,6 +11,16 @@ if not actions_setup then
 end
 
 -- configure telescope
+local fancy_layout = {
+	layout_strategy = "center",
+	layout_config = {
+		anchor = "S",
+		height = 0.35,
+		width = 0.99,
+		preview_cutoff = 1,
+	},
+}
+
 telescope.setup({
 	extensions = {
 		["ui-select"] = {
@@ -32,15 +42,9 @@ telescope.setup({
 			sort_mru = true,
 			ignore_current_buffer = true,
 		},
-		grep_string = {
-			theme = "ivy",
-		},
-		help_tags = {
-			theme = "ivy",
-		},
-		live_grep = {
-			theme = "ivy",
-		},
+		help_tags = fancy_layout,
+		grep_string = fancy_layout,
+		live_grep = fancy_layout,
 	},
 
 	-- configure custom mappings
