@@ -22,6 +22,13 @@ autocmd({ "BufWritePre" }, {
 	command = [[%s/\s\+$//e]],
 })
 
+-- auto resize command
+autocmd({ "VimResized" }, {
+	group = kyotoGroup,
+	pattern = "*",
+	command = "wincmd =",
+})
+
 -- Remove banner, and some other edits
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
