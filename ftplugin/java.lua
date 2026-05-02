@@ -244,7 +244,8 @@ end
 local augroup = vim.api.nvim_create_augroup("JavaCodeFormatting", {})
 
 config["on_attach"] = function(client, bufnr)
-	local _, _ = pcall(vim.lsp.codelens.refresh)
+	vim.lsp.codelens.enable(true)
+
 	require("jdtls").setup_dap({ hotcodereplace = "auto" })
 	require("kyoto.plugins.lsp.keybinds").on_attach(client, bufnr)
 	local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
@@ -254,13 +255,6 @@ config["on_attach"] = function(client, bufnr)
 
 	register_keybindings()
 end
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	pattern = { "*.java" },
-	callback = function()
-		local _, _ = pcall(vim.lsp.codelens.refresh)
-	end,
-})
 
 local function format_on_save()
 	vim.api.nvim_clear_autocmds({ group = augroup })
