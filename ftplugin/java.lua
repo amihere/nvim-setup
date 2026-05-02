@@ -19,8 +19,7 @@ vim.list_extend(
 
 local config = {
 	cmd = {
-		"java", -- or '/path/to/java17_or_newer/bin/java'
-		-- vim.fn.expand("/home/linuxbrew/.linuxbrew/Cellar/openjdk/21.0.3/bin/java"), -- or '/path/to/java17_or_newer/bin/java'
+		"java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -33,9 +32,6 @@ local config = {
 		"java.base/java.util=ALL-UNNAMED",
 		"--add-opens",
 		"java.base/java.lang=ALL-UNNAMED",
-
-		-- "-javaagent:" .. lombok_path,
-
 		"-jar",
 		equinox_launcher_path,
 
