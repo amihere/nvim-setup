@@ -79,3 +79,16 @@ vim.api.nvim_create_autocmd("FileType", {
 		end
 	end,
 })
+
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true, desc = "Incremental selection (outer)" }
+keymap("n", "<Enter>", ":normal van<cr>", opts)
+keymap("v", "<Enter>", function()
+	vim.api.nvim_feedkeys("an", "v", false)
+end)
+
+opts.desc = "Incremental selection (inner)"
+keymap("n", "<S-Enter>", ":normal vin<cr>", opts)
+keymap("v", "<S-Enter>", function()
+	vim.api.nvim_feedkeys("in", "v", false)
+end)
