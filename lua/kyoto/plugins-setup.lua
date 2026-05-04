@@ -40,9 +40,6 @@ return packer.startup(function(use)
 	-- essential plugins
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
 
-	-- commenting with gc
-	use("numToStr/Comment.nvim")
-
 	-- statusline
 	use("nvim-lualine/lualine.nvim")
 
@@ -83,37 +80,8 @@ return packer.startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		branch = "main",
-		run = function()
-			vim.api.nvim_create_autocmd("FileType", {
-				callback = function()
-					-- Enable treesitter highlighting and disable regex syntax
-					pcall(vim.treesitter.start)
-					-- Enable treesitter-based indentation
-					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-				end,
-			})
-
-			local ensureInstalled = {
-				"lua",
-				"elixir",
-				"erlang",
-				"java",
-				"python",
-				"typescript",
-			}
-
-			local alreadyInstalled = require("nvim-treesitter.config").get_installed()
-			local parsersToInstall = vim.iter(ensureInstalled)
-				:filter(function(parser)
-					return not vim.tbl_contains(alreadyInstalled, parser)
-				end)
-				:totable()
-			require("nvim-treesitter").install(parsersToInstall)
-
-			-- local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-			-- ts_update()
-		end,
 	})
+
 	-- git integration
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
