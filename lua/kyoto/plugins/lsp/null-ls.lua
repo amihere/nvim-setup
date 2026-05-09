@@ -22,6 +22,7 @@ null_ls.setup({
 		formatting.mix,
 		formatting.clang_format.with({ disabled_filetypes = { "java" } }),
 		formatting.prettier.with({
+			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
 			extra_filetypes = { "svelte" },
 		}),
 		formatting.gofumpt,
