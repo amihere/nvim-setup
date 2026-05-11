@@ -18,9 +18,9 @@ null_ls.setup({
 	sources = {
 		--  to disable file types use
 		--  "formatting.prettier.with({disabled_filetypes = {}})" (see null-ls docs)
-		formatting.stylua, -- lua formatter
-		formatting.mix,
 		formatting.clang_format.with({ disabled_filetypes = { "java" } }),
+		formatting.mix,
+		formatting.stylua, -- lua formatter
 		formatting.prettier.with({
 			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
 			extra_filetypes = { "svelte" },
