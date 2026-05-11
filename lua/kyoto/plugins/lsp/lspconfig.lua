@@ -177,5 +177,6 @@ vim.lsp.config("elixirls", {
 	elixirLS = {
 		dialyzerEnabled = false,
 		fetchDeps = false,
+		projectDir = ".",
 	},
 })
