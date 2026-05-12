@@ -33,3 +33,25 @@ autocmd({ "VimResized" }, {
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+
+-- Helpers
+
+-- Delete the swapfile for the current buffer
+local function delete_swapfile()
+	local swapfile = vim.fn.swapname(vim.api.nvim_buf_get_name(0))
+
+	if swapfile == "" then
+		vim.notify("No swapfile found for this buffer.", vim.log.levels.INFO)
+		return
+	end
+
+	local ok, err = os.remove(swapfile)
+	if ok then
+		vim.notify("Deleted swapfile: " .. swapfile, vim.log.levels.INFO)
+	else
+		vim.notify("Failed to delete swapfile: " .. (err or "unknown error"), vim.log.levels.ERROR)
+	end
+end
+
+-- Optional: bind to a command
+vim.api.nvim_create_user_command("DS", delete_swapfile, {})
