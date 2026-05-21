@@ -180,3 +180,5 @@ vim.lsp.config("elixirls", {
 		projectDir = ".",
 	},
 })
+
+vim.lsp.enable("lemminx")
