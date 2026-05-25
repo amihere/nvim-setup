@@ -35,3 +35,27 @@ mason_lspconfig.setup({
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
 })
+
+-- non-LSP tools (formatters, linters, code-action helpers) — single declaration point
+local tool_installer_status, tool_installer = pcall(require, "mason-tool-installer")
+if not tool_installer_status then
+	return
+end
+
+tool_installer.setup({
+	ensure_installed = {
+		-- formatters (used by conform.nvim)
+		"stylua",
+		"gofumpt",
+		"goimports",
+		"prettier",
+		"sqlfmt",
+		"clang-format",
+		-- linters (used by none-ls)
+		"golangci-lint",
+		"revive",
+		-- Go code-action helpers (used by none-ls)
+		"impl",
+		"gomodifytags",
+	},
+})

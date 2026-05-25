@@ -38,7 +38,7 @@ keymap.set("n", "<leader>fs", "<cmd>Telescope luasnip<cr>")           -- open sn
 keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>")       -- show colors
 keymap.set("n", "<leader>fC", "<cmd>Telescope commands<cr>")          -- opens command list
 keymap.set("n", "<leader>fv", "<cmd>Oil<cr>", { desc = "Open File Tree" })
-keymap.set("n", "<leader>fn", vim.lsp.buf.format, { desc = "Format file" })
+-- <leader>fn (format file) is defined in lua/kyoto/plugins/conform.lua
 keymap.set("n", "<leader>fx", function()
   require("telescope.builtin").find_files({
     cwd = vim.fn.stdpath("config"),
