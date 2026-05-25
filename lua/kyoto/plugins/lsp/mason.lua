@@ -51,11 +51,8 @@ tool_installer.setup({
 		"prettier",
 		"sqlfmt",
 		"clang-format",
-		-- linters (used by none-ls)
+		-- linters (used by nvim-lint)
 		"golangci-lint",
 		"revive",
-		-- Go code-action helpers (used by none-ls)
-		"impl",
-		"gomodifytags",
 	},
 })

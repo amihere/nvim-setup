@@ -67,7 +67,7 @@ return packer.startup(function(use)
 
 	-- formatting & linting
 	use("stevearc/conform.nvim") -- formatter (replaces null-ls formatting role)
-	use("nvimtools/none-ls.nvim") -- diagnostics + code-actions only (golangci_lint, revive, impl, gomodifytags)
+	use("mfussenegger/nvim-lint") -- async linter runner (golangci-lint, revive); writes to vim.diagnostic
 	use("WhoIsSethDaniel/mason-tool-installer.nvim") -- installs all non-LSP tools via Mason
 
 	-- treesitter configuration
