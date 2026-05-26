@@ -1,6 +1,6 @@
 local M = {}
 
-function M.on_attach(client, bufnr)
+function M.on_attach(_, bufnr)
 	local keymap = vim.keymap
 
 	-- keybind options

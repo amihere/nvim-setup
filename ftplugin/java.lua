@@ -17,7 +17,101 @@ vim.list_extend(
 	vim.fn.globpath("$MASON/share/java-debug-adapter", "com.microsoft.java.debug.plugin-*.jar", true, true)
 )
 
-local config = {
+local function register_keybindings()
+	local status_ok, which_key = pcall(require, "which-key")
+	if not status_ok then
+		return
+	end
+
+	local mappings = {
+		mode = "n", -- NORMAL mode
+		{ "<leader>J", group = "Java", nowait = true, remap = false },
+		{
+			"<leader>JC",
+			jdtls.extract_constant,
+			desc = "Extract Constant",
+			nowait = true,
+			remap = false,
+		},
+		{ "<leader>Jp", jdtls.pick_test, desc = "Pick Test", nowait = true, remap = false },
+		{ "<leader>JT", jdtls.test_class, desc = "Test Class", nowait = true, remap = false },
+		{ "<leader>Jc", "<Cmd>JdtCompile<CR>", desc = "Compile Java Code", nowait = true, remap = false },
+		{
+			"<leader>Jo",
+			jdtls.organize_imports,
+			desc = "Organize Imports",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Js",
+			"<Cmd>!mvn compile spring-boot:run<CR>",
+			desc = "Run a spring boot app",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Jt",
+			jdtls.test_nearest_method,
+			desc = "Test Method",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Jv",
+			jdtls.extract_variable,
+			desc = "Extract Variable",
+			nowait = true,
+			remap = false,
+		},
+	}
+
+	local vmappings = {
+		{
+			mode = { "v" },
+			{ "<leader>J", group = "Java", nowait = true, remap = false },
+			{
+				"<leader>Jc",
+				jdtls.extract_constant,
+				desc = "Extract Constant",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>Jm",
+				"<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>",
+				desc = "Extract Method",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>Jv",
+				"<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>",
+				desc = "Extract Variable",
+				nowait = true,
+				remap = false,
+			},
+		},
+	}
+
+	which_key.add(mappings)
+	which_key.add(vmappings)
+end
+
+local on_attach = function(client, bufnr)
+	vim.lsp.codelens.enable(true)
+
+	require("jdtls").setup_dap({ hotcodereplace = "auto" })
+	require("kyoto.plugins.lsp.keybinds").on_attach(client, bufnr)
+	local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
+	if status_ok then
+		jdtls_dap.setup_dap_main_class_configs()
+	end
+
+	register_keybindings()
+end
+
+vim.lsp.config("jdtls", {
 	cmd = {
 		"java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -154,103 +248,11 @@ local config = {
 		bundles = bundles,
 		extendedClientCapabilities = extendedClientCapabilities,
 	},
-}
 
-local function register_keybindings()
-	local status_ok, which_key = pcall(require, "which-key")
-	if not status_ok then
-		return
-	end
-
-	local mappings = {
-		mode = "n", -- NORMAL mode
-		{ "<leader>J", group = "Java", nowait = true, remap = false },
-		{
-			"<leader>JC",
-			jdtls.extract_constant,
-			desc = "Extract Constant",
-			nowait = true,
-			remap = false,
-		},
-		{ "<leader>Jp", jdtls.pick_test, desc = "Pick Test", nowait = true, remap = false },
-		{ "<leader>JT", jdtls.test_class, desc = "Test Class", nowait = true, remap = false },
-		{ "<leader>Jc", "<Cmd>JdtCompile<CR>", desc = "Compile Java Code", nowait = true, remap = false },
-		{
-			"<leader>Jo",
-			jdtls.organize_imports,
-			desc = "Organize Imports",
-			nowait = true,
-			remap = false,
-		},
-		{
-			"<leader>Js",
-			"<Cmd>!mvn compile spring-boot:run<CR>",
-			desc = "Run a spring boot app",
-			nowait = true,
-			remap = false,
-		},
-		{
-			"<leader>Jt",
-			jdtls.test_nearest_method,
-			desc = "Test Method",
-			nowait = true,
-			remap = false,
-		},
-		{
-			"<leader>Jv",
-			jdtls.extract_variable,
-			desc = "Extract Variable",
-			nowait = true,
-			remap = false,
-		},
-	}
-
-	local vmappings = {
-		{
-			mode = { "v" },
-			{ "<leader>J", group = "Java", nowait = true, remap = false },
-			{
-				"<leader>Jc",
-				jdtls.extract_constant,
-				desc = "Extract Constant",
-				nowait = true,
-				remap = false,
-			},
-			{
-				"<leader>Jm",
-				"<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>",
-				desc = "Extract Method",
-				nowait = true,
-				remap = false,
-			},
-			{
-				"<leader>Jv",
-				"<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>",
-				desc = "Extract Variable",
-				nowait = true,
-				remap = false,
-			},
-		},
-	}
-
-	which_key.add(mappings)
-	which_key.add(vmappings)
-end
+	on_attach = on_attach,
+})
 
 local augroup = vim.api.nvim_create_augroup("JavaCodeFormatting", {})
-
-config["on_attach"] = function(client, bufnr)
-	vim.lsp.codelens.enable(true)
-
-	require("jdtls").setup_dap({ hotcodereplace = "auto" })
-	require("kyoto.plugins.lsp.keybinds").on_attach(client, bufnr)
-	local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
-	if status_ok then
-		jdtls_dap.setup_dap_main_class_configs()
-	end
-
-	register_keybindings()
-end
 
 local function format_on_save()
 	vim.api.nvim_clear_autocmds({ group = augroup })
@@ -267,4 +269,4 @@ format_on_save()
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
-jdtls.start_or_attach(config)
+jdtls.start_or_attach(vim.lsp.config.jdtls)

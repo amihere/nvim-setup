@@ -66,15 +66,9 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
 
 	-- formatting & linting
-	use("nvimtools/none-ls.nvim") -- configure formatters & linters
-	use({
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"williamboman/mason.nvim",
-			"nvimtools/none-ls.nvim",
-		},
-	})
+	use("stevearc/conform.nvim") -- formatter (replaces null-ls formatting role)
+	use("mfussenegger/nvim-lint") -- async linter runner (golangci-lint, revive); writes to vim.diagnostic
+	use("WhoIsSethDaniel/mason-tool-installer.nvim") -- installs all non-LSP tools via Mason
 
 	-- treesitter configuration
 	use({

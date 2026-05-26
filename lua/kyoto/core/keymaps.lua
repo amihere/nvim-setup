@@ -27,58 +27,57 @@ keymap.set("n", "<leader>w", "<C-w>w") -- toggle between open windows
 ----------------------
 
 -- telescope
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")        -- find files within current working directory, respects .gitignore
-keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>")            -- resume the previous list
-keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")         -- find string in current working directory as you type
-keymap.set("n", "<leader>fG", "<cmd>Telescope grep_string<cr>")       -- find string under cursor in current working directory
-keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")           -- list open buffers in current neovim instance
-keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")         -- list available help tags
+keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
+keymap.set("n", "<leader>fr", "<cmd>Telescope resume<cr>") -- resume the previous list
+keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
+keymap.set("n", "<leader>fG", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
+keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
+keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 keymap.set("n", "<leader>fF", "<cmd>silent! Telescope git_files<cr>") -- git file search
-keymap.set("n", "<leader>fs", "<cmd>Telescope luasnip<cr>")           -- open snippets for lang
-keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>")       -- show colors
-keymap.set("n", "<leader>fC", "<cmd>Telescope commands<cr>")          -- opens command list
+keymap.set("n", "<leader>fs", "<cmd>Telescope luasnip<cr>") -- open snippets for lang
+keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>") -- show colors
+keymap.set("n", "<leader>fC", "<cmd>Telescope commands<cr>") -- opens command list
 keymap.set("n", "<leader>fv", "<cmd>Oil<cr>", { desc = "Open File Tree" })
-keymap.set("n", "<leader>fn", vim.lsp.buf.format, { desc = "Format file" })
 keymap.set("n", "<leader>fx", function()
-  require("telescope.builtin").find_files({
-    cwd = vim.fn.stdpath("config"),
-  })
+	require("telescope.builtin").find_files({
+		cwd = vim.fn.stdpath("config"),
+	})
 end, { desc = "view files in nvim config" })
 keymap.set("n", "<leader>fss", function()
-  require("telescope.builtin").find_files({
-    cwd = vim.fn.stdpath("data"),
-  })
+	require("telescope.builtin").find_files({
+		cwd = vim.fn.stdpath("data"),
+	})
 end, { desc = "find file in nvim source" })
 keymap.set("n", "<leader>fsg", function()
-  require("telescope.builtin").live_grep({
-    cwd = vim.fn.stdpath("data"),
-  })
+	require("telescope.builtin").live_grep({
+		cwd = vim.fn.stdpath("data"),
+	})
 end, { desc = "grep nvim source" })
 
 keymap.set(
-  "n",
-  "<leader>fa",
-  "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
-  { desc = "All symbols" }
+	"n",
+	"<leader>fa",
+	"<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
+	{ desc = "All symbols" }
 )
 keymap.set(
-  "n",
-  "<leader>fo",
-  "<cmd>lua require('telescope.builtin').lsp_document_symbols({symbols = {'function', 'method'} })<cr>",
-  { desc = "Filter methods/functions" }
+	"n",
+	"<leader>fo",
+	"<cmd>lua require('telescope.builtin').lsp_document_symbols({symbols = {'function', 'method'} })<cr>",
+	{ desc = "Filter methods/functions" }
 ) -- filter methods/functions
 keymap.set(
-  "n",
-  "<leader>fww",
-  "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
-  { desc = "Open worktrees", silent = true }
+	"n",
+	"<leader>fww",
+	"<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
+	{ desc = "Open worktrees", silent = true }
 ) -- git worktrees
 keymap.set(
-  "n",
-  "<leader>fwc",
-  "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
-  { desc = "Create worktrees", silent = true }
-)                                                -- create git worktree
+	"n",
+	"<leader>fwc",
+	"<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
+	{ desc = "Create worktrees", silent = true }
+) -- create git worktree
 
 keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
@@ -91,21 +90,21 @@ keymap.set("n", "<leader>o", "zi", { desc = "Toggle all folds" })
 
 -- run elixir commands
 keymap.set(
-  "n",
-  "<leader>zx",
-  "<cmd>silent !tmux splitw -l 20 -d iex -S mix<CR>",
-  { desc = "Run Elixir Mix in new tab" }
+	"n",
+	"<leader>zx",
+	"<cmd>silent !tmux splitw -l 20 -d iex -S mix<CR>",
+	{ desc = "Run Elixir Mix in new tab" }
 )
 
 keymap.set("n", "<leader>zX", function()
-  vim.cmd(":silent !tmux send-keys -t 1 'recompile' C-m")
+	vim.cmd(":silent !tmux send-keys -t 1 'recompile' C-m")
 end, { desc = "Reload Elixir server running in tab 1" })
 
 keymap.set(
-  "n",
-  "<leader>zb",
-  "<cmd>silent !tmux splitw -l 20 -d mix run --no-halt<CR>",
-  { desc = "Run Elixir process as prod" }
+	"n",
+	"<leader>zb",
+	"<cmd>silent !tmux splitw -l 20 -d mix run --no-halt<CR>",
+	{ desc = "Run Elixir process as prod" }
 )
 
 -- harpoon
@@ -152,7 +151,7 @@ keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left
 keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
 
 keymap.set("n", "<leader><leader>", function()
-  vim.cmd("so")
+	vim.cmd("so")
 end, { desc = "Source files" })
 
 keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
@@ -168,16 +167,16 @@ keymap.set("t", "<C-k>", "<C-\\><C-n><Cmd>TmuxNavigateUp<cr>", { silent = true, 
 keymap.set("t", "<C-j>", "<C-\\><C-n><Cmd>TmuxNavigateDown<cr>", { silent = true, desc = "Go down in terminal" })
 keymap.set("t", "<ESC>", "<C-\\><C-n>", { silent = true, desc = "Escape terminal mode" })
 keymap.set("n", "<leader>tt", function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  vim.cmd.wincmd("J")
-  vim.cmd.startinsert()
+	vim.cmd.vnew()
+	vim.cmd.term()
+	vim.cmd.wincmd("J")
+	vim.cmd.startinsert()
 end, { silent = true, desc = "Open large terminal" })
 
 keymap.set("n", "<leader>ts", function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, 5)
-  vim.cmd.startinsert()
+	vim.cmd.vnew()
+	vim.cmd.term()
+	vim.cmd.wincmd("J")
+	vim.api.nvim_win_set_height(0, 5)
+	vim.cmd.startinsert()
 end, { silent = true, desc = "Open a smaller terminal" })
