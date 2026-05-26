@@ -81,14 +81,33 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true, desc = "Incremental selection (outer)" }
-keymap("n", "<Enter>", ":normal van<cr>", opts)
+
+-- <CR> defaults (quickfix jump, command-line confirm, etc.) must keep working;
+-- only override <CR>/<S-CR> in normal-mode regular buffers.
+local function in_regular_buf()
+	return vim.bo.buftype == "" and vim.fn.reg_recording() == "" and vim.fn.reg_executing() == ""
+end
+
+keymap("n", "<Enter>", function()
+	if in_regular_buf() then
+		vim.cmd("normal! van")
+	else
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
+	end
+end, { noremap = true, silent = true, desc = "Incremental selection (outer)" })
+
 keymap("v", "<Enter>", function()
 	vim.api.nvim_feedkeys("an", "v", false)
 end)
 
-opts.desc = "Incremental selection (inner)"
-keymap("n", "<S-Enter>", ":normal vin<cr>", opts)
+keymap("n", "<S-Enter>", function()
+	if in_regular_buf() then
+		vim.cmd("normal! vin")
+	else
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-CR>", true, false, true), "n", false)
+	end
+end, { noremap = true, silent = true, desc = "Incremental selection (inner)" })
+
 keymap("v", "<S-Enter>", function()
 	vim.api.nvim_feedkeys("in", "v", false)
 end)

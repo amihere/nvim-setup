@@ -41,14 +41,14 @@ function M.on_attach(_, bufnr)
 	opts.desc = "Ask for signature help"
 
 	keymap.set("n", "<leader>rh", function()
-		vim.lsp.buf.signature_help()
-		vim.lsp.buf.signature_help()
+		vim.lsp.buf.signature_help({ border = "rounded" })
+		vim.lsp.buf.signature_help({ border = "rounded" })
 	end, opts)
 
 	opts.desc = "Run Hover"
 	keymap.set("n", "K", function()
-		vim.lsp.buf.hover()
-		vim.lsp.buf.hover()
+		vim.lsp.buf.hover({ border = "rounded" })
+		vim.lsp.buf.hover({ border = "rounded" })
 	end, opts)
 end
 

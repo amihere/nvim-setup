@@ -42,6 +42,7 @@ opt.splitbelow = true
 opt.incsearch = true
 opt.hlsearch = false
 opt.scrolloff = 8
+opt.updatetime = 250
 
 -- TJ
 opt.list = false

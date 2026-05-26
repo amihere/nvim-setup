@@ -18,6 +18,7 @@ vim.diagnostic.config({
 	virtual_text = true,
 	severity_sort = true,
 	update_in_insert = false,
+	float = { border = "rounded" },
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = signs.Error,
@@ -80,9 +81,6 @@ vim.lsp.config("lua_ls", {
 vim.lsp.config("pylsp", {
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
-	flags = {
-		debounce_text_changes = 150,
-	},
 	settings = {
 		pylsp = {
 			plugins = {
@@ -98,17 +96,11 @@ vim.lsp.config("pylsp", {
 vim.lsp.config("gopls", {
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
-	flags = {
-		debounce_text_changes = 150,
-	},
 })
 
 vim.lsp.config("biome", {
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
-	flags = {
-		debounce_text_changes = 150,
-	},
 })
 
 vim.lsp.config("lemminx", {
@@ -163,18 +155,12 @@ local capable = vim.lsp.protocol.make_client_capabilities()
 capable.textDocument.completion.completionItem.snippetSupport = true
 vim.lsp.config("html", {
 	capabilities = capable,
-	flags = {
-		debounce_text_changes = 150,
-	},
 })
 
 -- Configure ElixirLS as the LSP server for Elixir.
 vim.lsp.config("elixirls", {
 	on_attach = on_attach, -- this may be required for extended functionalities of the LSP
 	capabilities = capabilities,
-	flags = {
-		debounce_text_changes = 150,
-	},
 	settings = {
 		elixirLS = {
 			dialyzerEnabled = false,
@@ -184,4 +170,16 @@ vim.lsp.config("elixirls", {
 	},
 })
 
-vim.lsp.enable("lemminx")
+vim.lsp.enable({
+	"lua_ls",
+	"pylsp",
+	"gopls",
+	"biome",
+	"lemminx",
+	"cssls",
+	"tailwindcss",
+	"ts_ls",
+	"svelte",
+	"html",
+	"elixirls",
+})
