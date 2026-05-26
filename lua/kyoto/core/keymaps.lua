@@ -33,7 +33,15 @@ keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>") -- find string in 
 keymap.set("n", "<leader>fG", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
-keymap.set("n", "<leader>fF", "<cmd>silent! Telescope git_files<cr>") -- git file search
+keymap.set("n", "<leader>fF", function()
+	local builtin = require("telescope.builtin")
+	vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
+	if vim.v.shell_error == 0 then
+		builtin.git_files({ show_untracked = true })
+	else
+		builtin.find_files()
+	end
+end, { desc = "git files (with untracked) / find_files fallback" })
 keymap.set("n", "<leader>fs", "<cmd>Telescope luasnip<cr>") -- open snippets for lang
 keymap.set("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>") -- show colors
 keymap.set("n", "<leader>fC", "<cmd>Telescope commands<cr>") -- opens command list
@@ -134,7 +142,7 @@ keymap.set("x", "<leader>p", [["_dP]])
 -- will copy text into both copy buffer and system clipboard
 keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 keymap.set("n", "<leader>Y", [["+Y]])
-keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+keymap.set({ "n", "v" }, "<leader>D", [["_d]])
 
 -- This is going to get me cancelled
 keymap.set("i", "<C-c>", "<Esc>")
