@@ -107,6 +107,9 @@ return packer.startup(function(use)
 
 	use({ "benfowler/telescope-luasnip.nvim" })
 
+	-- claude code integration (terminal + MCP / IDE protocol)
+	use({ "coder/claudecode.nvim", requires = { "nvim-lua/plenary.nvim" } })
+
 	use({
 		"folke/which-key.nvim",
 		config = function()
