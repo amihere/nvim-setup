@@ -57,3 +57,4 @@ opt.foldnestmax = 2
 opt.fml = 3
 
 opt.showmode = false
+opt.complete = { ".", "w", "b", "k" }

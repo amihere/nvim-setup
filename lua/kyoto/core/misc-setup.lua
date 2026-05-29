@@ -29,6 +29,22 @@ autocmd({ "VimResized" }, {
 	command = "wincmd =",
 })
 
+autocmd("InsertEnter", {
+	group = kyotoGroup,
+	pattern = "*",
+	callback = function()
+		vim.cmd("let save_cwd = getcwd() | set autochdir")
+	end,
+})
+
+autocmd("InsertLeave", {
+	group = kyotoGroup,
+	pattern = "*",
+	callback = function()
+		vim.cmd("set noautochdir | execute 'cd' fnameescape(save_cwd)")
+	end,
+})
+
 -- Remove banner, and some other edits
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0

@@ -99,8 +99,6 @@ local function register_keybindings()
 end
 
 local on_attach = function(client, bufnr)
-	vim.lsp.codelens.enable(true)
-
 	require("jdtls").setup_dap({ hotcodereplace = "auto" })
 	require("kyoto.plugins.lsp.keybinds").on_attach(client, bufnr)
 	local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
@@ -108,10 +106,17 @@ local on_attach = function(client, bufnr)
 		jdtls_dap.setup_dap_main_class_configs()
 	end
 
+	vim.opt.colorcolumn = "80"
+	vim.o.tabstop = 4
+	vim.o.shiftwidth = 0
 	register_keybindings()
 end
 
 vim.lsp.config("jdtls", {
+	flags = {
+		debounce_text_changes = 150,
+		allow_incremental_changes = true,
+	},
 	cmd = {
 		"java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -119,6 +124,7 @@ vim.lsp.config("jdtls", {
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
 		"-Dlog.protocol=true",
 		"-Dlog.level=ALL",
+		"-Djava.import.generatesMetadataFilesAtProjectRoot=false",
 		"-javaagent:" .. lombok_path,
 		"-Xmx1g",
 		"--add-modules=ALL-SYSTEM",
@@ -137,17 +143,19 @@ vim.lsp.config("jdtls", {
 	},
 
 	root_dir = vim.fs.root(0, { "gradlew", ".git", "mvnw" }),
-	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	capabilities = vim.tbl_deep_extend(
+		"force",
+		{},
+		vim.lsp.protocol.make_client_capabilities(),
+		require("cmp_nvim_lsp").default_capabilities()
+	),
 
-	-- Here you can configure eclipse.jdt.ls specific settings
-	-- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-	-- for a list of options
 	settings = {
 		java = {
-			server = { launchMode = "Hybrid" },
+			server = { launchMode = "Hybrid", quiet = true },
 			extendedClientCapabilities = extendedClientCapabilities,
 			eclipse = {
-				downloadSources = true,
+				downloadSources = false,
 			},
 			format = {
 				enabled = true,
@@ -159,17 +167,11 @@ vim.lsp.config("jdtls", {
 			gradle = {
 				enabled = true,
 			},
+			updateBuildConfiguration = "interactive",
+			importStrategy = "prompt",
 			maven = {
 				downloadSources = true,
 			},
-			-- configuration = {
-			-- 	runtimes = {
-			-- 		{
-			-- 			name = "JavaSE-17",
-			-- 			path = "/home/linuxbrew/.linuxbrew/Cellar/openjdk@17/17.0.11",
-			-- 		},
-			-- 	},
-			-- },
 			references = {
 				includeDecompiledSources = true,
 			},
@@ -177,7 +179,7 @@ vim.lsp.config("jdtls", {
 				enabled = true,
 			},
 			referenceCodeLens = {
-				enabled = true,
+				enabled = false,
 			},
 			inlayHints = {
 				parameterNames = {
@@ -260,6 +262,8 @@ local function format_on_save()
 end
 
 format_on_save()
+
+vim.lsp.handlers["$/progress"] = function() end
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
