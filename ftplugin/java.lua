@@ -44,13 +44,6 @@ local function register_keybindings()
 			remap = false,
 		},
 		{
-			"<leader>Js",
-			"<Cmd>!mvn compile spring-boot:run<CR>",
-			desc = "Run a spring boot app",
-			nowait = true,
-			remap = false,
-		},
-		{
 			"<leader>Jt",
 			jdtls.test_nearest_method,
 			desc = "Test Method",

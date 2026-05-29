@@ -71,3 +71,43 @@ end
 
 -- Optional: bind to a command
 vim.api.nvim_create_user_command("DS", delete_swapfile, {})
+
+-- Copy the matching Makefile template (gradle/maven) into the project root.
+-- Finds the root with vim.fs.root, same as ftplugin/java.lua. Use
+-- :MakefileInit! to overwrite an existing Makefile.
+local function makefile_init(opts)
+	local root = vim.fs.root(0, { "gradlew", ".git", "mvnw" })
+	if not root then
+		vim.notify("No project root found above this buffer", vim.log.levels.ERROR)
+		return
+	end
+
+	local kind
+	if vim.uv.fs_stat(vim.fs.joinpath(root, "pom.xml")) then
+		kind = "maven"
+	elseif vim.uv.fs_stat(vim.fs.joinpath(root, "build.gradle")) or vim.uv.fs_stat(vim.fs.joinpath(root, "build.gradle.kts")) then
+		kind = "gradle"
+	else
+		vim.notify("No pom.xml or build.gradle at project root: " .. root, vim.log.levels.ERROR)
+		return
+	end
+
+	local dest = vim.fs.joinpath(root, "Makefile")
+	if vim.uv.fs_stat(dest) and not opts.bang then
+		vim.notify(dest .. " exists (use :MakefileInit! to overwrite)", vim.log.levels.WARN)
+		return
+	end
+
+	local src = vim.fs.joinpath(vim.fn.stdpath("config"), "templates", "Makefile." .. kind)
+	local ok, err = vim.uv.fs_copyfile(src, dest)
+	if ok then
+		vim.notify("Copied " .. kind .. " Makefile -> " .. dest, vim.log.levels.INFO)
+	else
+		vim.notify("Copy failed: " .. (err or "unknown error"), vim.log.levels.ERROR)
+	end
+end
+
+vim.api.nvim_create_user_command("MakefileInit", makefile_init, {
+	bang = true,
+	desc = "Copy the matching Gradle/Maven Makefile template into the project root",
+})

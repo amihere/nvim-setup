@@ -1,0 +1,44 @@
+# Makefile facade for a Gradle project.
+# Copy to your project root as `Makefile`, then tweak the knobs below.
+# Each recipe just shells out to Gradle -- Make is only a short front door.
+
+# Build tool; swap for `gradle` if you don't vendor the wrapper.
+GRADLE := ./gradlew
+# Extra flags, e.g. make test ARGS="--tests FooTest"
+ARGS :=
+
+# Spring Boot app:          RUN = bootRun   PKG = bootJar
+# Plain application plugin:  RUN = run       PKG = jar
+RUN := bootRun
+PKG := bootJar
+
+.DEFAULT_GOAL := help
+.PHONY: help build compile test run clean package deps check
+
+help: ## List available targets
+	@grep -E '^[a-zA-Z_-]+:.*## ' $(MAKEFILE_LIST) | sort \
+		| awk 'BEGIN{FS=":.*## "}{printf "  \033[36m%-9s\033[0m %s\n", $$1, $$2}'
+
+build: ## Build everything (compile, test, assemble)
+	$(GRADLE) build $(ARGS)
+
+compile: ## Compile main sources only
+	$(GRADLE) classes $(ARGS)
+
+test: ## Run tests
+	$(GRADLE) test $(ARGS)
+
+run: ## Run the application
+	$(GRADLE) $(RUN) $(ARGS)
+
+clean: ## Remove build outputs
+	$(GRADLE) clean $(ARGS)
+
+package: ## Produce the runnable artifact (jar)
+	$(GRADLE) $(PKG) $(ARGS)
+
+deps: ## Print the dependency tree
+	$(GRADLE) dependencies $(ARGS)
+
+check: ## Run all verification (tests + checks)
+	$(GRADLE) check $(ARGS)

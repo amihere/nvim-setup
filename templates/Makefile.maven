@@ -1,0 +1,43 @@
+# Makefile facade for a Maven project.
+# Copy to your project root as `Makefile`, then tweak the knobs below.
+# Each recipe just shells out to Maven -- Make is only a short front door.
+
+# Build tool; swap for `mvn` if you don't vendor the wrapper.
+MVN := ./mvnw
+# Extra flags, e.g. make test ARGS="-Dtest=FooTest"
+ARGS :=
+
+# Spring Boot app:  RUN = spring-boot:run
+# Otherwise wire up exec-maven-plugin and use  RUN = exec:java
+RUN := spring-boot:run
+
+.DEFAULT_GOAL := help
+.PHONY: help build compile test run clean package deps check
+
+help: ## List available targets
+	@grep -E '^[a-zA-Z_-]+:.*## ' $(MAKEFILE_LIST) | sort \
+		| awk 'BEGIN{FS=":.*## "}{printf "  \033[36m%-9s\033[0m %s\n", $$1, $$2}'
+
+build: ## Build the project (compile, test, package)
+	$(MVN) package $(ARGS)
+
+compile: ## Compile main sources only
+	$(MVN) compile $(ARGS)
+
+test: ## Run tests
+	$(MVN) test $(ARGS)
+
+run: ## Run the application
+	$(MVN) $(RUN) $(ARGS)
+
+clean: ## Remove build outputs
+	$(MVN) clean $(ARGS)
+
+package: ## Produce the runnable artifact (jar)
+	$(MVN) package $(ARGS)
+
+deps: ## Print the dependency tree
+	$(MVN) dependency:tree $(ARGS)
+
+check: ## Run all verification (verify lifecycle)
+	$(MVN) verify $(ARGS)
