@@ -136,13 +136,7 @@ vim.lsp.config("jdtls", {
 		vim.fn.stdpath("cache") .. "/jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t"),
 	},
 
-	root_dir = require("jdtls.setup").find_root({
-		".git",
-		"mvnw",
-		"gradlew",
-		"pom.xml",
-		"build.gradle",
-	}),
+	root_dir = vim.fs.root(0, { "gradlew", ".git", "mvnw" }),
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 
 	-- Here you can configure eclipse.jdt.ls specific settings
