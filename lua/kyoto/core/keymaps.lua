@@ -188,3 +188,5 @@ keymap.set("n", "<leader>ts", function()
 	vim.api.nvim_win_set_height(0, 5)
 	vim.cmd.startinsert()
 end, { silent = true, desc = "Open a smaller terminal" })
+
+keymap.set("n", "<leader>e", vim.diagnostic.open_float, { silent = true, desc = "Show line diagnostics" }) -- show diagnostics for line

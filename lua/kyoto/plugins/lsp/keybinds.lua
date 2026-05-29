@@ -31,9 +31,6 @@ function M.on_attach(_, bufnr)
 	opts.desc = "Show buffer diagnostics"
 	keymap.set("n", "<leader>E", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
-	opts.desc = "Show line diagnostics"
-	keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts) -- show diagnostics for line
-
 	opts.desc = "toggle inlay hints"
 	keymap.set("n", "<leader>ri", function()
 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
