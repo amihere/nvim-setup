@@ -111,3 +111,43 @@ vim.api.nvim_create_user_command("MakefileInit", makefile_init, {
 	bang = true,
 	desc = "Copy the matching Gradle/Maven Makefile template into the project root",
 })
+
+-- Run `make` with tab-completion of targets parsed from the project's Makefile.
+-- Targets come from "target: ## desc" lines (the template format). :JJ sends
+-- output to the quickfix list; :JJ! runs in a bottom terminal split (for
+-- long-running targets like run). -C keeps it working from subdirectories.
+local function make_targets()
+	local root = vim.fs.root(0, { "Makefile" }) or vim.fn.getcwd()
+	local makefile = vim.fs.joinpath(root, "Makefile")
+	if not vim.uv.fs_stat(makefile) then
+		return {}
+	end
+	local targets = {}
+	for line in io.lines(makefile) do
+		local t = line:match("^([%w_-]+):.*##")
+		if t then
+			table.insert(targets, t)
+		end
+	end
+	return targets
+end
+
+vim.api.nvim_create_user_command("JJ", function(opts)
+	local root = vim.fs.root(0, { "Makefile" }) or vim.fn.getcwd()
+	local args = vim.fn.fnameescape(root) .. " " .. opts.args
+	if opts.bang then
+		vim.cmd("botright split | terminal make -C " .. args)
+		vim.cmd("startinsert")
+	else
+		vim.cmd("make -C " .. args)
+	end
+end, {
+	nargs = "*",
+	bang = true,
+	desc = "Run make: :JJ -> quickfix, :JJ! -> bottom terminal split (target completion)",
+	complete = function(lead)
+		return vim.tbl_filter(function(t)
+			return t:find(lead, 1, true) == 1
+		end, make_targets())
+	end,
+})
