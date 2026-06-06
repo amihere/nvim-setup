@@ -20,6 +20,7 @@ local ensure_installed = {
 	"json",
 	"lua",
 	"python",
+	"sql",
 	"svelte",
 	"typescript",
 	"vim",

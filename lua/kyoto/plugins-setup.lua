@@ -107,6 +107,9 @@ return packer.startup(function(use)
 
 	use({ "benfowler/telescope-luasnip.nvim" })
 
+	-- JSON/YAML schema catalog (SchemaStore.org) for jsonls/yamlls
+	use({ "b0o/SchemaStore.nvim" })
+
 	use({
 		"folke/which-key.nvim",
 		config = function()

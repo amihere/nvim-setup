@@ -170,6 +170,57 @@ vim.lsp.config("elixirls", {
 	},
 })
 
+-- SchemaStore catalog feeds jsonls/yamlls with schemas for k8s, GH Actions,
+-- docker-compose, OpenAPI, package.json, tsconfig, etc.
+local schemastore_ok, schemastore = pcall(require, "schemastore")
+
+vim.lsp.config("jsonls", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		json = {
+			schemas = schemastore_ok and schemastore.json.schemas() or nil,
+			validate = { enable = true },
+		},
+	},
+})
+
+vim.lsp.config("yamlls", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		yaml = {
+			-- disable yamlls' built-in store so SchemaStore.nvim drives schemas
+			schemaStore = {
+				enable = false,
+				url = "",
+			},
+			schemas = schemastore_ok and schemastore.yaml.schemas() or nil,
+			keyOrdering = false,
+		},
+	},
+})
+
+vim.lsp.config("taplo", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+vim.lsp.config("dockerls", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+vim.lsp.config("docker_compose_language_service", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+vim.lsp.config("sqls", {
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 vim.lsp.enable({
 	"lua_ls",
 	"pylsp",
@@ -182,4 +233,9 @@ vim.lsp.enable({
 	"svelte",
 	"html",
 	"elixirls",
+	"jsonls",
+	"yamlls",
+	"taplo",
+	"dockerls",
+	"docker_compose_language_service",
 })

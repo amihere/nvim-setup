@@ -31,6 +31,12 @@ mason_lspconfig.setup({
 		"jdtls",
 		-- Go
 		"gopls",
+		-- Config / infra
+		"yamlls",
+		"jsonls",
+		"taplo",
+		"dockerls",
+		"docker_compose_language_service",
 	},
 })
 
@@ -52,5 +58,7 @@ tool_installer.setup({
 		-- linters (used by nvim-lint)
 		"golangci-lint",
 		"revive",
+		-- debug adapters
+		"delve",
 	},
 })
